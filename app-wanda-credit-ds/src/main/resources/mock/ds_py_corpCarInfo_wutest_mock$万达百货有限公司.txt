@@ -1,0 +1,57 @@
+<result>
+	<status>1</status>
+	<returnValue><![CDATA[<?xml version="1.0" encoding="GBK" ?>
+<cisReports  batNo="2017032011018300" unitName="快钱支付清算信息有限公司" subOrgan="风险管理部" queryUserID="kqwsquery" queryCount="1" receiveTime="20170320 11:30:55">
+<cisReport reportID="2017032011018300" buildEndTime="2017-03-20 11:30:57" queryReasonID="99" subReportTypes="22201,22202,22203,22204,22205" treatResult="1,0,0,1,0" subReportTypesShortCaption="1、企业车辆信息核查(22201) 2、企业车辆状态查询(22202) 3、企业机动车信息查询(22203) 4、企业车架号核查(22204) 5、企业车辆初次登记日期核查(22205) " refID="avin14" hasSystemError="false" isFrozen="false">
+	<queryConditions>
+		<item>
+			<name>corpName</name>
+			<caption>企业名称</caption>
+			<value>万达百货有限公司</value>
+		</item>
+		<item>
+			<name>licenseNo</name>
+			<caption>车牌号码</caption>
+			<value>沪BGM382</value>
+		</item>
+		<item>
+			<name>carType</name>
+			<caption>号牌种类</caption>
+			<value>小型汽车号牌</value>
+		</item>
+		<item>
+			<name>isNeedStatus</name>
+			<caption>是否查询机动车状态，1:查询， 2:不查询</caption>
+			<value>1</value>
+		</item>
+		<item>
+			<name>VIN</name>
+			<caption>车架号</caption>
+			<value>LHGCR1649E8028462</value>
+		</item>
+		<item>
+			<name>registTime</name>
+			<caption>初次登记日期</caption>
+			<value>2012-11-23</value>
+		</item>
+	</queryConditions>
+<carCheckInfo subReportType="22201" subReportTypeCost="22201" treatResult="1" errorMessage="">
+<item>
+<nameCheckResult>无法核查</nameCheckResult>
+<licenseNoCheckResult>一致</licenseNoCheckResult>
+<carTypeCheckResult>无法核查</carTypeCheckResult>
+</item>
+</carCheckInfo>
+<carStatusInfo subReportType="22202" subReportTypeCost="22202" treatResult="2" errorMessage="">
+</carStatusInfo>
+<carInfo subReportType="22203" subReportTypeCost="22203" treatResult="2" errorMessage="">
+</carInfo>
+<carCodeCheck subReportType="22204" subReportTypeCost="22204" treatResult="1" errorMessage="">
+<carCodeCheckResult>不一致</carCodeCheckResult>
+</carCodeCheck>
+<carRegistTimeCheck subReportType="22205" subReportTypeCost="22205" treatResult="1" errorMessage="">
+<registTimeCheckResult>无法核查</registTimeCheckResult>
+</carRegistTimeCheck>
+</cisReport>
+</cisReports>]]></returnValue>
+</result>

@@ -1,0 +1,16 @@
+.gradle/
+build/
+*.ipr
+*.iws
+gradle.properties
+target/
+out/
+.settings/
+.classpath
+.project
+src/main/webapp/assets/.sass-cache
+.springBeans
+.externalToolBuilders/
+/bin
+.idea/
+app-wanda-credit-ds.iml

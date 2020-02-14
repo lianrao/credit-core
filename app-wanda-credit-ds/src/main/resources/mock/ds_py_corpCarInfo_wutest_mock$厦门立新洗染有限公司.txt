@@ -1,0 +1,53 @@
+<result>
+	<status>1</status>
+	<returnValue><![CDATA[<?xml version="1.0" encoding="GBK" ?>
+<cisReports  batNo="2017032411027914" unitName="快钱支付清算信息有限公司" subOrgan="风险管理部" queryUserID="kqwsquery" queryCount="1" receiveTime="20170324 11:50:12">
+<cisReport reportID="2017032411027925" buildEndTime="2017-03-24 11:50:15" queryReasonID="99" subReportTypes="22201,22202,22203,22205" treatResult="1,1,0,1" subReportTypesShortCaption="1、企业车辆信息核查(22201) 2、企业车辆状态查询(22202) 3、企业机动车信息查询(22203) 4、企业车辆初次登记日期核查(22205) " refID="1vin003" hasSystemError="false" isFrozen="false">
+	<queryConditions>
+		<item>
+			<name>corpName</name>
+			<caption>企业名称</caption>
+			<value>厦门立新洗染有限公司</value>
+		</item>
+		<item>
+			<name>licenseNo</name>
+			<caption>车牌号码</caption>
+			<value>闽DF2861</value>
+		</item>
+		<item>
+			<name>carType</name>
+			<caption>号牌种类</caption>
+			<value>小型汽车号牌</value>
+		</item>
+		<item>
+			<name>isNeedStatus</name>
+			<caption>是否查询机动车状态，1:查询， 2:不查询</caption>
+			<value>1</value>
+		</item>
+		<item>
+			<name>registTime</name>
+			<caption>初次登记日期</caption>
+			<value>2012-11-23</value>
+		</item>
+	</queryConditions>
+<carCheckInfo subReportType="22201" subReportTypeCost="22201" treatResult="1" errorMessage="">
+<item>
+<nameCheckResult>一致</nameCheckResult>
+<licenseNoCheckResult>一致</licenseNoCheckResult>
+<carTypeCheckResult>一致</carTypeCheckResult>
+</item>
+</carCheckInfo>
+<carStatusInfo subReportType="22202" subReportTypeCost="22202" treatResult="1" errorMessage="">
+<carStatusDesc>注销</carStatusDesc>
+</carStatusInfo>
+<carInfo subReportType="22203" subReportTypeCost="22203" treatResult="2" errorMessage="">
+</carInfo>
+<carRegistTimeCheck subReportType="22205" subReportTypeCost="22205" treatResult="1" errorMessage="">
+<registTimeCheckResult>不一致</registTimeCheckResult>
+</carRegistTimeCheck>
+</cisReport>
+</cisReports>]]></returnValue>
+</result>
+
+
+

@@ -1,0 +1,79 @@
+<result>
+	<status>1</status>
+	<returnValue><![CDATA[<?xml version="1.0" encoding="GBK" ?>
+<cisReports  batNo="2017082110018852" unitName="快钱支付清算信息有限公司" subOrgan="风险管理部" queryUserID="kqwsquery" queryCount="1" receiveTime="20170821 10:28:15">
+<cisReport reportID="2017082110018976" buildEndTime="2017-08-21 10:28:16" queryReasonID="99" subReportTypes="11110" treatResult="1" subReportTypesShortCaption="1、教育最高学历信息(11110) " hasSystemError="false" isFrozen="false">
+	<queryConditions>
+		<item>
+			<name>name</name>
+			<caption>被查询者姓名</caption>
+			<value>郭凯</value>
+		</item>
+		<item>
+			<name>documentNo</name>
+			<caption>被查询者证件号码</caption>
+			<value>362227199001302912</value>
+		</item>
+	</queryConditions>
+	<lastEducationInfo subReportType="11110" subReportTypeCost="11110" treatResult="1" errorMessage="">
+		<personBaseInfo>
+			<name>郭凯</name>
+			<documentNo>362227199001302912</documentNo>
+			<degree>本科</degree>
+			<specialty>软件工程</specialty>
+			<college>东华理工大学</college>
+			<graduateTime>2012</graduateTime>
+			<graduateYears>5</graduateYears>
+			<originalAddress>江西省宜春地区万载县</originalAddress>
+			<verifyResult>1</verifyResult>
+			<birthday>19900130</birthday>
+			<gender>1</gender>
+			<age>27</age>
+		</personBaseInfo>
+		<educationInfo>
+			<item>
+				<degreeInfo>
+
+				<name>郭凯</name>
+					<documentNo>104051201205020185</documentNo>
+					<college>东华理工大学</college>					
+					<graduateTime>2012</graduateTime>
+					<studyStyle>普通全日制</studyStyle>					
+                                        <specialty>软件工程</specialty>
+					<isKeySubject>N</isKeySubject>
+					<degree>本科</degree>
+					<studyResult>毕业</studyResult>
+					<photo>相片BASE64编码，可能为空</photo>
+					<photoStyle>jpg</photoStyle>
+
+
+
+					
+				</degreeInfo>
+				<collegeInfo>
+					<college>东华理工大学</college>
+					<collegeOldName>东华理工大学</collegeOldName>
+					<address>江西省南昌市、江西省抚州市</address>
+					<createDate>1956</createDate>
+					<createYears>61</createYears>
+					<colgCharacter>普通高等教育</colgCharacter>
+					<colgLevel>本科</colgLevel>
+					<character>公办</character>
+					<colgType>工科</colgType>
+					<scienceBatch>本科提前一二三专科批</scienceBatch>
+					<artBatch>本科提前二三专科批</artBatch>
+					<postDoctorNum>1</postDoctorNum>
+					<doctorDegreeNum>0</doctorDegreeNum>
+					<masterDegreeNum>32</masterDegreeNum>
+					<academicianNum>1</academicianNum>
+					<is211>N</is211>
+					<manageDept>江西省教育厅</manageDept>
+					<keySubjectNum>0</keySubjectNum>
+				</collegeInfo>
+			</item>
+		</educationInfo>
+		<riskAndAdviceInfo>1.此类人群工资收入处于中高水平，在有大专以上学历人群中，按工资收入水平从高到低排位，约在前10%至前35%左右。2.此类人群违约率处于中等水平，在有大专以上学历人群中，按违约率从高到低排位，约在前35%至前75%之间。3.此类人群属于中高收入、中等风险人群。4.此类人群建议给予较低程度的授信，注意风险控制。</riskAndAdviceInfo>
+	</lastEducationInfo>
+</cisReport>
+</cisReports>]]></returnValue>
+</result>

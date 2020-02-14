@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	    http://www.springframework.org/schema/beans/spring-beans.xsd
+	    http://www.springframework.org/schema/tx
+	    http://www.springframework.org/schema/tx/spring-tx.xsd
+	    http://www.springframework.org/schema/jee
+	    http://www.springframework.org/schema/jee/spring-jee.xsd
+	    http://www.springframework.org/schema/aop
+	    http://www.springframework.org/schema/aop/spring-aop.xsd
+	    http://www.springframework.org/schema/context
+	    http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/task 
+        http://www.springframework.org/schema/task/spring-task.xsd
+		http://www.springframework.org/schema/util 
+		http://www.springframework.org/schema/util/spring-util.xsd"
+
+	default-autowire="byName"> 
+	  
+	<aop:aspectj-autoproxy expose-proxy="false"/>
+	<context:annotation-config />
+	<bean class="com.wanda.credit.base.util.SpringContextUtils" lazy-init="false" />
+	<context:component-scan base-package="com.wanda.credit"  />
+	 
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+		<list>
+			<value>classpath:system.properties</value>
+			<value>classpath:app-base.properties</value>
+			<value>classpath:properties/hibernate.properties</value>
+		</list>
+		</property>
+	</bean>
+
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+		<!-- 基本属性 url、user、password -->
+		<property name="url" value="${sys.credit.env.oracle.jdbc.url.cpdbds}" />
+		<property name="username" value="${sys.credit.env.oracle.jdbc.username.cpdbds}" />
+		<property name="password" value="${sys.credit.env.oracle.jdbc.password.cpdbds}" />
+		<!-- 配置初始化大小、最小、最大 -->
+		<property name="initialSize" value="1" />
+		<property name="minIdle" value="5" />
+		<property name="maxActive" value="${sys.credit.env.oracle.jdbc.ds.maxActive1}" />
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name="maxWait" value="60000" />
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+		<property name="validationQuery" value="SELECT 'x' FROM DUAL" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+		<!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
+		<!-- 配置监控统计拦截的filters -->
+		<property name="filters" value="stat" />
+	</bean>
+
+	<bean id="dataSource_efsdb" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+		<!-- 基本属性 url、user、password -->
+		<property name="url" value="${sys.credit.env.oracle.jdbc.url2}" />
+		<property name="username" value="${sys.credit.env.oracle.jdbc.username2}" />
+		<property name="password" value="${sys.credit.env.oracle.jdbc.password2}" />
+		<!-- 配置初始化大小、最小、最大 -->
+		<property name="initialSize" value="1" />
+		<property name="minIdle" value="1" />
+		<property name="maxActive" value="${sys.credit.env.oracle.jdbc.ds.maxActive1}" />
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name="maxWait" value="60000" />
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+		<property name="validationQuery" value="SELECT 'x' FROM DUAL" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+		<!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
+		<!-- 配置监控统计拦截的filters -->
+		<property name="filters" value="stat" />
+	</bean>
+	
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan">
+			<list>
+				<value>com.wanda.credit.ds.dao.domain</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					${hibernate.dialect}
+				</prop>
+				<prop key="hibernate.show_sql">
+					${hibernate.show_sql}
+				</prop>
+				<prop key="hibernate.jdbc.fetch_size">
+					${hibernate.jdbc.fetch_size}
+				</prop>
+				<prop key="hibernate.jdbc.batch_size">
+					${hibernate.jdbc.batch_size}
+				</prop>
+				<prop key="hibernate.max_fetch_depth">
+					${hibernate.max_fetch_depth}
+				</prop>
+				<prop key="hibernate.use_outer_join">
+					${hibernate.use_outer_join}
+				</prop>
+				<prop key="hibernate.bytecode.use_reflection_optimizer">
+					${hibernate.bytecode.use_reflection_optimizer}
+				</prop>
+				<prop key="hibernate.hbm2ddl.auto">
+					${hibernate.hbm2ddl.auto}
+				</prop>
+				<prop key="javax.persistence.validation.mode">none</prop>
+			</props>
+		</property> 
+	</bean>
+	<bean id="sessionFactory_efsdb"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource_efsdb" />
+		<property name="packagesToScan">
+			<list>
+				<value>com.wanda.credit.ds.dao.domain</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					${hibernate.dialect}
+				</prop>
+				<prop key="hibernate.show_sql">
+					${hibernate.show_sql}
+				</prop>
+				<prop key="hibernate.jdbc.fetch_size">
+					${hibernate.jdbc.fetch_size}
+				</prop>
+				<prop key="hibernate.jdbc.batch_size">
+					${hibernate.jdbc.batch_size}
+				</prop>
+				<prop key="hibernate.max_fetch_depth">
+					${hibernate.max_fetch_depth}
+				</prop>
+				<prop key="hibernate.use_outer_join">
+					${hibernate.use_outer_join}
+				</prop>
+				<prop key="hibernate.bytecode.use_reflection_optimizer">
+					${hibernate.bytecode.use_reflection_optimizer}
+				</prop>
+				<prop key="hibernate.hbm2ddl.auto">
+					${hibernate.hbm2ddl.auto}
+				</prop>
+				<prop key="javax.persistence.validation.mode">none</prop>
+			</props>
+		</property>
+	</bean> 
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<import resource="classpath:/context/common/props/common-all-props-conf.xml"/>
+	<import resource="classpath:/context/base/redis/base-redis-conf.xml"/>
+	<import resource="classpath:/context/base/cache/base-cache-conf.xml"/>
+	<import resource="classpath:/context/common/dubbo/common-ds-dubbo-client.xml"/> 
+	<import resource="classpath:/context/common/dubbo/common-ds-dubbo-service.xml"/> 	
+	<import resource="classpath:/context/ds/ds-requestor.xml"/>
+</beans>

@@ -1,0 +1,1870 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<!-- 数据源请求处理器定义 -->
+<beans>
+
+	<!-- 数据源序号：8 数据源名称：银联智慧 数据源描述：用户画像 -->
+	<bean name="ds_unionPayPaint"
+		class="com.wanda.credit.ds.client.unionpay.UnionPayPaintDataSourceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo</value>
+		</property>
+		<property name="url">
+			<value>${sys.credit.client.http.ylhx.url}</value>
+		</property>
+		<property name="account">
+			<value>${sys.credit.client.http.ylhx.id}</value>
+		</property>
+		<property name="privateKey">
+			<value>${sys.credit.client.http.ylhx.appKey}</value>
+		</property>
+	</bean>
+
+	<!-- 数据源序号：9 数据源名称：银联智慧 数据源描述：商户画像 -->
+	<bean name="ds_merchantUnionPayPaint"
+		class="com.wanda.credit.ds.client.unionpay.MerchantUnionPayPaintDataSourceRequestor">
+		<property name="paramIds">
+			<value>mid,mname,regNo,legalName</value>
+		</property>
+		<property name="url">
+			<value>${sys.credit.client.http.ylhx.merchant.url}</value>
+		</property>
+		<property name="account">
+			<value>${sys.credit.client.http.ylhx.merchant.id}</value>
+		</property>
+		<property name="privateKey">
+			<value>${sys.credit.client.http.ylhx.merchant.appKey}</value>
+		</property>
+	</bean>
+
+	<!-- 数据源序号：12 数据源名称：银联智慧 数据源描述：用户画像 -->
+	<bean name="ds_pro_unionPayPaint"
+		class="com.wanda.credit.ds.client.unionpay.ProUnionPayPaintDataSourceRequestor">
+		<property name="paramIds">
+			<value>cardNo,name,cardNo_Type,cardId</value>
+		</property>
+		<property name="url">
+			<value>${sys.credit.client.http.ylhx.url}</value>
+		</property>
+		<property name="account">
+			<value>${sys.credit.client.http.ylhx.id}</value>
+		</property>
+		<property name="privateKey">
+			<value>${sys.credit.client.http.ylhx.appKey}</value>
+		</property>
+	</bean>
+<!-- 数据源序号：12 数据源名称：银联智慧 数据源描述：用户画像 -->
+	<bean name="ds_new_unionPayPaint"
+		class="com.wanda.credit.ds.client.unionpay.UnionPayPaintNewRequestor">
+		<property name="paramIds">
+			<value>cardId</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：13 数据源名称：银联智慧 数据源描述：商户画像 -->
+	<bean name="ds_proMerchantUnionPayPaint"
+		class="com.wanda.credit.ds.client.unionpay.ProMerchantUnionPayPaintDataSourceRequestor">
+		<property name="paramIds">
+			<value>mid,regNo</value>
+		</property>
+		<property name="url">
+			<value>${sys.credit.client.http.ylhx.merchant.url}</value>
+		</property>
+		<property name="account">
+			<value>${sys.credit.client.http.ylhx.merchant.id}</value>
+		</property>
+		<property name="privateKey">
+			<value>${sys.credit.client.http.ylhx.merchant.appKey}</value>
+		</property>
+	</bean>
+	
+	<!-- 数据源序号：12-1  数据源名称：银联智慧 数据源描述：消费画像 -->
+	<!-- <bean name="ds_p_consumer_portrait"
+		class="com.wanda.credit.ds.client.unionpay.PersonalConsumerPortraitDataSourceRequestor">
+		<property name="paramIds">
+			<value>cardNo, name, cardNo_Type, cardId, mobile, email, address, indices</value>
+		</property>
+		<property name="nullableIds">
+			<value>name, indices, mobile, email, address</value>
+		</property>
+	</bean> -->
+	
+	<!-- 数据源名称：集奥 BEGIN -->
+	<!--数据源描述：集奥 手机三要素验证 -->
+	<bean name="ds_jiAo_mobileCheck"
+		class="com.wanda.credit.ds.client.ji_ao.requestor.JiAoMobileCheckDSRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,mobile</value>
+		</property>
+		<property name="testFlag">
+			<value>${sys.credit.client.testFlag}</value>
+		</property>
+	</bean>
+
+	<!--数据源描述：集奥 手机三要素验证 -->
+	<bean name="ds_jiAo_multiple"
+		class="com.wanda.credit.ds.client.ji_ao.requestor.JiAoMobileMultipleDSRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,mobile,inTime,mobileState</value>
+		</property>
+		<property name="testFlag">
+			<value>${sys.credit.client.testFlag}</value>
+			<!-- <value>1</value> -->
+		</property>
+	</bean>
+	<!-- 数据源名称：集奥 END -->
+	
+	<!-- 数据源序号：8 数据源名称：中数数据源 数据源描述：企业工商证照数据查询 -->
+	<bean name="ds_zsCorpQuery"
+		class="com.wanda.credit.ds.client.zhongshu.ZSCorpInfoDataSourceRequestor">
+		<property name="paramIds">
+			<value>regicode,keyType,acct_id</value>
+		</property>
+		<property name="address">
+			<value>${sys.credit.client.zs.address2}</value>
+		</property>
+		<property name="userId">
+			<value>${sys.credit.client.zs.userId}</value>
+		</property>
+		<property name="userPwd">
+			<value>${sys.credit.client.zs.userPwd}</value>
+		</property>
+		<property name="orders">
+			<value>111110011100001101000001110101111000000000100000</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：xx 数据源名称：中数数据源 数据源描述：企业工商四要素核查 -->
+	<bean name="ds_zsCorpBasicAuthen_new"
+		class="com.wanda.credit.ds.client.zhongshunew.ZSCorpBasicAuthenDataSourceRequestor">
+		<property name="paramIds">
+			<value>entName,entMark,name,cardNo</value>
+			<!--企业名称,企业标识,人员姓名,个人标识码-->
+		</property>
+		<property name="nullableIds">
+			<value>entName,entMark</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：8 数据源名称：新中数数据源 数据源描述：企业工商信息查询 -->
+	<bean name="ds_zsCorpQuery_new"
+		class="com.wanda.credit.ds.client.zhongshunew.ZSCorpInfo_NEW_DataSourceRequestor">
+		<property name="paramIds">
+			<value>id,creditcode,regno,name,orgcode,mask,version,enttype,acct_id,entstatus</value>
+			<!--业务查询类型 中数企业ID,统一信用代码,企业注册号,企业名称,组织机构代码,查询掩码,个人标识版本号_返回个人标识码时生效 ,企业类型:1-企业 2-个体 ,征信公司客户的账户ID-->
+			<!--id、creditcode、regno、name、orgcode中至少有一个不能为空,当同时传入这五个参数的时候，匹配优先级依次是：id,creditcode,regno,name,orgcode -->
+		</property>
+		<property name="nullableIds">
+			<value>id,creditcode,regno,name,orgcode,mask,version,enttype,entstatus</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：8 数据源名称：新中数数据源 数据源描述：企业工商信息查询简版 -->
+	<bean name="ds_zsCorpQuery_cut"
+		class="com.wanda.credit.ds.client.zhongshunew.ZSCorpInfo_CUT_DataSourceRequestor">
+		<property name="paramIds">
+			<value>id,creditcode,regno,name,orgcode,mask,version,enttype,acct_id</value>
+			<!--业务查询类型 中数企业ID,统一信用代码,企业注册号,企业名称,组织机构代码,查询掩码,个人标识版本号_返回个人标识码时生效 ,企业类型:1-企业 2-个体 ,征信公司客户的账户ID-->
+			<!--id、creditcode、regno、name、orgcode中至少有一个不能为空,当同时传入这五个参数的时候，匹配优先级依次是：id,creditcode,regno,name,orgcode -->
+		</property>
+		<property name="nullableIds">
+			<value>id,creditcode,regno,name,orgcode,mask,version,enttype</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：8 数据源名称：新中数数据源 数据源描述：企业工商信息查询简版 -->
+	<bean name="ds_zsCorpQuery_cut2"
+		class="com.wanda.credit.ds.client.zhongshunew.ZSCorpInfo_CUT2_DataSourceRequestor">
+		<property name="paramIds">
+			<value>id,creditcode,regno,name,orgcode,mask,version,enttype,acct_id</value>
+			<!--业务查询类型 中数企业ID,统一信用代码,企业注册号,企业名称,组织机构代码,查询掩码,个人标识版本号_返回个人标识码时生效 ,企业类型:1-企业 2-个体 ,征信公司客户的账户ID-->
+			<!--id、creditcode、regno、name、orgcode中至少有一个不能为空,当同时传入这五个参数的时候，匹配优先级依次是：id,creditcode,regno,name,orgcode -->
+		</property>
+		<property name="nullableIds">
+			<value>id,creditcode,regno,name,orgcode,mask,version,enttype</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：9 数据源名称：新中数数据源 数据源描述：按个人标识码查询 -->
+	<bean name="ds_zsPersonQuery_new"
+		class="com.wanda.credit.ds.client.zhongshunew.ZSPersonQuery_NEW_DataSourceRequestor">
+		<property name="paramIds">
+			<value>palgorithmid,version,mask,acct_id,name</value>
+			<!--人员标识码   人员标识version 查询掩码,分别代表法人、股东、高管、行政处罚、失信被执行人、被执行人共6个模块 征信公司客户的账户ID-->
+		</property>
+		<property name="nullableIds">
+			<value>version,mask,name</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：10 数据源名称：新中数数据源 数据源描述：人员探查 -->
+	<bean name="ds_zsPersonNam_new"
+		class="com.wanda.credit.ds.client.zhongshunew.ZSPersonNam_NEW_DataSourceRequestor">
+		<property name="paramIds">
+			<value>entname,name,mask,acct_id</value>
+			<!--企业名称  人员姓名  查询掩码,分别代表法人、股东、高管、行政处罚、失信被执行人、被执行人共6个模块  征信公司客户的账户ID-->
+		</property>
+		<property name="nullableIds">
+			<value>mask</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：9 数据源名称：中数数据源 数据源描述：个人资信数据查询 -->
+	<bean name="ds_zsPersonQuery"
+		class="com.wanda.credit.ds.client.zhongshu.ZSPersonInfoDataSourceRequestor">
+		<property name="paramIds">
+			<value>cardNo,acct_id</value>
+		</property>
+		<property name="address">
+			<value>${sys.credit.client.zs.address2}</value>
+		</property>
+		<property name="userId">
+			<value>${sys.credit.client.zs.userId}</value>
+		</property>
+		<property name="userPwd">
+			<value>${sys.credit.client.zs.userPwd}</value>
+		</property>
+		<property name="orders">
+			<value>00000000001110000000000000000000010</value>
+		</property>
+		<property name="keyType">
+			<value>9</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：9 数据源名称：中数数据源 数据源描述：个人资信数据查询 -->
+	<bean name="ds_zsPersonNewQuery"
+		class="com.wanda.credit.ds.client.zhongshu.ZSPersonNewSourceRequestor">
+		<property name="paramIds">
+			<value>personId,acct_id</value>
+		</property>
+		<property name="address">
+			<value>${sys.credit.client.zs.address2}</value>
+		</property>
+		<property name="userId">
+			<value>${sys.credit.client.zs.userId}</value>
+		</property>
+		<property name="userPwd">
+			<value>${sys.credit.client.zs.userPwd}</value>
+		</property>
+		<property name="orders">
+			<value>00000000001110000000000000000000010</value>
+		</property>
+		<property name="keyType">
+			<value>9</value>
+		</property>
+	</bean>
+
+	<bean name="ds_qh_addressWork"
+		class="com.wanda.credit.ds.client.qianhai.AddressDataSourceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,address,queryType,mobile</value>
+		</property>
+
+		<!-- ==============生产环境 ============== -->
+		<property name="url">
+<!-- 		https://qhzx-dcs.pingan.com.cn/do/dmz/query/rskdoo/v1/MSC8036 -->
+			<value>${sys.credit.client.qianhai_2_0.url_address}</value>
+		</property>
+		<property name="userName">
+			<value>${sys.credit.client.qianhai_2_0.userName}</value>
+		</property>
+		<property name="userPassword">
+			<value>${sys.credit.client.qianhai_2_0.password}</value>
+		</property>
+		<property name="orgCode">
+			<value>${sys.credit.client.qianhai_2_0.orgCode}</value>
+		</property>
+		<property name="chnlId">
+			<value>${sys.credit.client.qianhai_2_0.chnlId}</value>
+		</property>
+		<property name="authCode">
+			<value>${sys.credit.client.qianhai_2_0.authCode}</value>
+		</property>
+		<property name="authDate">
+			<value>${sys.credit.client.qianhai_2_0.authDate}</value>
+		</property>
+		<property name="key">
+			<value>${sys.credit.client.qianhai_2_0.key}</value>
+		</property>
+		<property name="privateKeyPasswd">
+			<value>${sys.credit.client.qianhai_2_0.prikeyPwd}</value>
+		</property>
+		<property name="privateKeyAlias">
+			<value>${sys.credit.client.qianhai_2_0.prikeyAlias}</value>
+		</property>
+	</bean>
+	
+	<bean name="ds_qh_blacklist_glad"
+		class="com.wanda.credit.ds.client.qianhai.BlackListDataSourceRequestor_2_0">
+		<property name="paramIds">
+			<value>name,cardNo,ips,cardIds,mobiles,authCode,authDate</value>
+		</property>
+		<property name="nullableIds">
+			<value>ips,cardIds,mobiles</value>
+		</property>
+
+		<!-- ==============生产环境 ============== -->
+		<property name="url">
+<!-- 		https://qhzx-dcs.pingan.com.cn/do/dmz/query/rskdoo/v1/MSC8036 -->
+			<value>${sys.credit.client.qianhai_2_0.url_rsk}</value>
+		</property>
+		<property name="userName">
+			<value>${sys.credit.client.qianhai_2_0.userName}</value>
+		</property>
+		<property name="userPassword">
+			<value>${sys.credit.client.qianhai_2_0.password}</value>
+		</property>
+		<property name="orgCode">
+			<value>${sys.credit.client.qianhai_2_0.orgCode}</value>
+		</property>
+		<property name="chnlId">
+			<value>${sys.credit.client.qianhai_2_0.chnlId}</value>
+		</property>
+		<property name="authCode">
+			<value>${sys.credit.client.qianhai_2_0.authCode}</value>
+		</property>
+		<property name="authDate">
+			<value>${sys.credit.client.qianhai_2_0.authDate}</value>
+		</property>
+		<property name="key">
+			<value>${sys.credit.client.qianhai_2_0.key}</value>
+		</property>
+		<property name="privateKeyPasswd">
+			<value>${sys.credit.client.qianhai_2_0.prikeyPwd}</value>
+		</property>
+		<property name="privateKeyAlias">
+			<value>${sys.credit.client.qianhai_2_0.prikeyAlias}</value>
+		</property>
+	</bean>
+
+	<!-- 数据源名称：前海好信度列表 -->
+	<bean name="ds_qh_credoo_glad"
+		class="com.wanda.credit.ds.client.qianhai.CredooDataSourceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,cardId,mobileNo,authCode,authDate</value>
+		</property>
+		<!-- ==============生产环境 ============== -->
+		<property name="url">
+<!-- 		https://qhzx-dcs.pingan.com.cn/do/dmz/query/credoo/v1/MSC8005 -->
+			<value>${sys.credit.client.qianhai_2_0.url_credoo}</value>
+		</property>
+		<property name="userName">
+			<value>${sys.credit.client.qianhai_2_0.userName}</value>
+		</property>
+		<property name="userPassword">
+			<value>${sys.credit.client.qianhai_2_0.password}</value>
+		</property>
+		<property name="orgCode">
+			<value>${sys.credit.client.qianhai_2_0.orgCode}</value>
+		</property>
+		<property name="chnlId">
+			<value>${sys.credit.client.qianhai_2_0.chnlId}</value>
+		</property>
+		<property name="authCode">
+			<value>${sys.credit.client.qianhai_2_0.authCode}</value>
+		</property>
+		<property name="authDate">
+			<value>${sys.credit.client.qianhai_2_0.authDate}</value>
+		</property>
+		<property name="key">
+			<value>${sys.credit.client.qianhai_2_0.key}</value>
+		</property>
+		<property name="privateKeyPasswd">
+			<value>${sys.credit.client.qianhai_2_0.prikeyPwd}</value>
+		</property>
+		<property name="privateKeyAlias">
+			<value>${sys.credit.client.qianhai_2_0.prikeyAlias}</value>
+		</property>
+		<!-- ==============开发环境 ============== -->
+		<!-- <property name="url"> <value>https://test-qhzx.pingan.com.cn:5443/do/dmz/query/credoo/v1/MSC8005</value> 
+			</property> <property name="userName"> <value>V_PA025_QHCS_DCS</value> </property> 
+			<property name="userPassword"> <value>weblogic1</value> </property> <property 
+			name="orgCode"> <value>10000000</value> </property> <property name="chnlId"> 
+			<value>qhcs-dcs</value> </property> <property name="authCode"> <value>CRT001A2</value> 
+			</property> <property name="authDate"> <value>2016-01-22 10:30:14</value> 
+			</property> <property name="key"> <value>SK803@!QLF-D25WEDA5E52DA</value> 
+			</property> <property name="privateKeyPasswd"> <value>qhzx_stg</value> </property> 
+			<property name="privateKeyAlias"> <value>signKey</value> </property> -->
+	</bean>
+	<!-- wcs add 前海 常贷客数据源 -->
+	<!-- 数据源名称：前海 常贷客数据源 数据源描述：前海 常贷客数据源 -->
+	<bean name="ds_qh_loanee_glad"
+		class="com.wanda.credit.ds.client.qianhai.LoaneeDataSourceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,authCode,authDate,statsPeriod</value>
+		</property>
+		<property name="nullableIds">
+			<value>statsPeriod</value>
+		</property>
+		<!-- ==============生产环境 ============== -->
+		<property name="url">
+<!-- 		https://qhzx-dcs.pingan.com.cn/do/dmz/query/loanee/v1/MSC8037 -->
+			<value>${sys.credit.client.qianhai_2_0.url_loanee}</value>
+		</property>
+		<property name="userName">
+			<value>${sys.credit.client.qianhai_2_0.userName}</value>
+		</property>
+		<property name="userPassword">
+			<value>${sys.credit.client.qianhai_2_0.password}</value>
+		</property>
+		<property name="orgCode">
+			<value>${sys.credit.client.qianhai_2_0.orgCode}</value>
+		</property>
+		<property name="chnlId">
+			<value>${sys.credit.client.qianhai_2_0.chnlId}</value>
+		</property>
+		<property name="authCode">
+			<value>${sys.credit.client.qianhai_2_0.authCode}</value>
+		</property>
+		<property name="authDate">
+			<value>${sys.credit.client.qianhai_2_0.authDate}</value>
+		</property>
+		<!-- 校验码 -->
+		<property name="key">
+			<value>${sys.credit.client.qianhai_2_0.key}</value>
+		</property>
+		<property name="privateKeyPasswd">
+			<value>${sys.credit.client.qianhai_2_0.prikeyPwd}</value>
+		</property>
+		<property name="privateKeyAlias">
+			<value>${sys.credit.client.qianhai_2_0.prikeyAlias}</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：前海 常贷客数据源 数据源描述：前海 常贷客数据源 -->
+	<bean name="ds_qh_loanee_gladv2"
+		class="com.wanda.credit.ds.client.qianhai.LoaneeV2DataSourceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,mobile,authCode,authDate,statsPeriod</value>
+		</property>
+		<property name="nullableIds">
+			<value>mobile,statsPeriod</value>
+		</property>
+		<!-- ==============生产环境 ============== -->
+		<property name="url">
+<!-- 		https://qhzx-dcs.pingan.com.cn/do/dmz/query/loaneeIIAll/v3/MSC8391 -->
+			<value>${sys.credit.client.qianhai_2_0.url_loaneev2}</value>
+		</property>
+		<property name="userName">
+			<value>${sys.credit.client.qianhai_2_0.userName}</value>
+		</property>
+		<property name="userPassword">
+			<value>${sys.credit.client.qianhai_2_0.password}</value>
+		</property>
+		<property name="orgCode">
+			<value>${sys.credit.client.qianhai_2_0.orgCode}</value>
+		</property>
+		<property name="chnlId">
+			<value>${sys.credit.client.qianhai_2_0.chnlId}</value>
+		</property>
+		<property name="authCode">
+			<value>${sys.credit.client.qianhai_2_0.authCode}</value>
+		</property>
+		<property name="authDate">
+			<value>${sys.credit.client.qianhai_2_0.authDate}</value>
+		</property>
+		<!-- 校验码 -->
+		<property name="key">
+			<value>${sys.credit.client.qianhai_2_0.key}</value>
+		</property>
+		<property name="privateKeyPasswd">
+			<value>${sys.credit.client.qianhai_2_0.prikeyPwd}</value>
+		</property>
+		<property name="privateKeyAlias">
+			<value>${sys.credit.client.qianhai_2_0.prikeyAlias}</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：前海风险银行卡评估数据 -->
+	<bean name="ds_qh_riskCard_glad"
+		class="com.wanda.credit.ds.client.qianhai.RiskCardSourceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,cardId,mobile,authCode,authDate</value>
+		</property>
+		<!-- ==============生产环境 ============== -->
+		<property name="url">
+<!-- 		https://qhzx-dcs.pingan.com.cn/do/dmz/query/credoo/v1/MSC8012 -->
+			<value>${sys.credit.client.qianhai_2_0.url_riskCard}</value>
+		</property>
+		<property name="userName">
+			<value>${sys.credit.client.qianhai_2_0.userName}</value>
+		</property>
+		<property name="userPassword">
+			<value>${sys.credit.client.qianhai_2_0.password}</value>
+		</property>
+		<property name="orgCode">
+			<value>${sys.credit.client.qianhai_2_0.orgCode}</value>
+		</property>
+		<property name="chnlId">
+			<value>${sys.credit.client.qianhai_2_0.chnlId}</value>
+		</property>
+		<property name="authCode">
+			<value>${sys.credit.client.qianhai_2_0.authCode}</value>
+		</property>
+		<property name="authDate">
+			<value>${sys.credit.client.qianhai_2_0.authDate}</value>
+		</property>
+		<property name="key">
+			<value>${sys.credit.client.qianhai_2_0.key}</value>
+		</property>
+		<property name="privateKeyPasswd">
+			<value>${sys.credit.client.qianhai_2_0.prikeyPwd}</value>
+		</property>
+		<property name="privateKeyAlias">
+			<value>${sys.credit.client.qianhai_2_0.prikeyAlias}</value>
+		</property>
+	</bean>
+	<!-- 前海MSC8075:反欺诈风险认证数据 -->
+	<bean name="ds_qh_riskauth_glad"
+		class="com.wanda.credit.ds.client.qianhai.RiskAuthSourceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,ip,mobile,authCode,authDate</value>
+		</property>
+		<property name="nullableIds">
+			<value>ip,mobile</value>
+		</property>
+
+		<!-- ==============生产环境 ============== -->
+		<property name="url">
+<!-- 		https://qhzx-dcs.pingan.com.cn/do/dmz/verify/antiFraudDoo/v1/MSC8075 -->
+			<value>${sys.credit.client.qianhai_2_0.url_rskauth}</value>
+		</property>
+		<property name="userName">
+			<value>${sys.credit.client.qianhai_2_0.userName}</value>
+		</property>
+		<property name="userPassword">
+			<value>${sys.credit.client.qianhai_2_0.password}</value>
+		</property>
+		<property name="orgCode">
+			<value>${sys.credit.client.qianhai_2_0.orgCode}</value>
+		</property>
+		<property name="chnlId">
+			<value>${sys.credit.client.qianhai_2_0.chnlId}</value>
+		</property>
+		<property name="authCode">
+			<value>${sys.credit.client.qianhai_2_0.authCode}</value>
+		</property>
+		<property name="authDate">
+			<value>${sys.credit.client.qianhai_2_0.authDate}</value>
+		</property>
+		<property name="key">
+			<value>${sys.credit.client.qianhai_2_0.key}</value>
+		</property>
+		<property name="privateKeyPasswd">
+			<value>${sys.credit.client.qianhai_2_0.prikeyPwd}</value>
+		</property>
+		<property name="privateKeyAlias">
+			<value>${sys.credit.client.qianhai_2_0.prikeyAlias}</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：25 数据源名称：汇法个人、企业精确查询 ss2是稳定的地址 ss0是不稳定的 <value>http://ss0.lawxp.com/v1/person.aspx</value> 
+		<value>http://121.52.216.217:83/v1/Person.aspx</value> -->
+	<bean name="ds_huifaExactQuery"
+		class="com.wanda.credit.ds.client.huifa.PreciseQueryDataSourceRequestor">
+		<property name="paramIds">
+			<value>name,idCard,currentPage,pageSize,sourcet,flag,acct_id</value>
+		</property>
+		<property name="curl">
+			<value>http://ss02.lawxp.com/v1/person.aspx</value>
+		</property>
+		<property name="burl">
+			<value>http://ss02.lawxp.com/v1/company.aspx</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：26 数据源名称：汇法个人、企业信息批量信息录入 -->
+	<bean name="ds_huifaBatchRecord"
+		class="com.wanda.credit.ds.client.huifa.BatchRecordDataSourceRequestor">
+		<property name="paramIds">
+			<value>type,keynum,msg</value>
+		</property>
+		<property name="url">
+			<value>http://ss0.lawxp.com/m1/Batch.aspx</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：27 数据源名称：汇法个人、企业信息批量结果查询 -->
+	<bean name="ds_huifaBatchQueryResult"
+		class="com.wanda.credit.ds.client.huifa.BatchQueryResultDataSourceRequestor">
+		<property name="paramIds">
+			<value>type,keynum,pg,pz</value>
+		</property>
+		<property name="url">
+			<value>http://ss0.lawxp.com/m1/Batch.aspx</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：28 数据源名称：汇法扣费查询 -->
+	<bean name="ds_huifaBillQuery"
+		class="com.wanda.credit.ds.client.huifa.BillDataSourceRequestor">
+		<property name="paramIds">
+			<value>pg,pz</value>
+		</property>
+		<property name="url">
+			<value>http://ss0.lawxp.com/m1/log_money.aspx</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：亿微银行卡鉴权 数据源描述：亿微银行卡鉴权 -->
+	<!-- <bean name="ds_yiwei_AuthenBankCard3"
+		class="com.wanda.credit.ds.client.yiwei.YWAuthenBankCard3DataSourceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,cardId</value>
+		</property>
+		<property name="userName">
+			<value>${sys.credit.client.yiwei.username}</value>
+		</property>
+		<property name="password">
+			<value>${sys.credit.client.yiwei.password}</value>
+		</property>
+	</bean> -->
+	<!-- 数据源名称：亿微银行卡鉴权 数据源描述：亿微银行卡鉴权 -->
+	<!-- <bean name="ds_yiwei_AuthenBankCard4"
+		class="com.wanda.credit.ds.client.yiwei.YWAuthenBankCard4DataSourceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,cardId,phone</value>
+		</property>
+		<property name="userName">
+			<value>${sys.credit.client.yiwei.username}</value>
+		</property>
+		<property name="password">
+			<value>${sys.credit.client.yiwei.password}</value>
+		</property>
+	</bean> -->
+	<!-- 数据源名称：新颜银行卡鉴权 数据源描述：新颜银行卡鉴权 -->
+	<!-- <bean name="ds_xyan_AuthenBankCard"
+		class="com.wanda.credit.ds.client.xyan.XYanAuthenBankCardDataSourceRequestor">
+		<property name="paramIds">
+			<value>name,cardid,typeno</value>
+		</property>
+		<property name="nullableIds">
+			<value>cardno,mobile,card_type,valid_date_year,valid_date_month,valid_cvv2no</value>
+		</property>
+		<property name="url"> <value>${ifs.credit.client.yiwei.authenbankcard4.url}/</value> 
+			</property> <property name="userName"> <value>${ifs.credit.client.yiwei.username}</value> 
+			</property> <property name="password"> <value>${ifs.credit.client.yiwei.password}</value> 
+			</property>
+	</bean> -->
+	<!-- 数据源序号： 数据源名称：宜信黑名单 -->
+	<bean name="ds_yixin_blacklist"
+		class="com.wanda.credit.ds.client.yixin.YiXinBlackListDataSourceRequestor">
+		<property name="paramIds">
+			<value>name,idType,idNo,mobile,email,qq,homeAddr,homeTel,company,companyAddr,companyTel</value>
+		</property>
+		<property name="nullableIds">
+			<value>mobile,email,qq,homeAddr,homeTel,company,companyAddr,companyTel</value>
+		</property>
+		<property name="key">
+			<value>${sys.credit.client.yixin.key}</value>
+		</property>
+		<property name="userId">
+			<value>${sys.credit.client.yixin.userId}</value>
+		</property>
+		<property name="url">
+			<value>${sys.credit.client.yixin.blacklist.url}</value>
+		</property>
+	</bean>
+	<!-- 数据源序号： 数据源名称：宜信借款信息 -->
+	<bean name="ds_yixin_loanrecords"
+		class="com.wanda.credit.ds.client.yixin.YiXinLoanDataSourceRequestor">
+		<property name="paramIds">
+			<value>name,idType,idNo</value>
+		</property>
+		<property name="key">
+			<value>${sys.credit.client.yixin.key}</value>
+		</property>
+		<property name="userId">
+			<value>${sys.credit.client.yixin.userId}</value>
+		</property>
+		<property name="url">
+			<value>${sys.credit.client.yixin.loanrecords.url}</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：鹏元车辆违章信息查询 数据源描述：车辆违章信息等信息 -->
+	<bean name="ds_py_carillegal"
+		class="com.wanda.credit.ds.client.pengyuan.CarIllegalDataSourceRequestor">
+		<property name="paramIds">
+			<value>carNumber,carType,carCode,carEngine</value>
+		</property>
+		<property name="userId">
+			<value>${sys.credit.client.pengyuan.userId}</value>
+		</property>
+		<property name="userPwd">
+			<value>${sys.credit.client.pengyuan.pwd}</value>
+		</property>
+		<property name="queryType">
+			<value>25186</value>
+		</property>
+		<property name="reportIds">
+			<value>30100</value>
+		</property>
+	</bean>
+
+	<!-- 数据源名称：鹏元-职业资格信息查询 数据源描述：鹏元-职业资格信息查询 -->
+	<bean name="ds_py_osta"
+		class="com.wanda.credit.ds.client.pengyuan.OSTADataSourceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo</value>
+		</property>
+		<property name="userId">
+			<value>${sys.credit.client.pengyuan.userId}</value>
+		</property>
+		<property name="userPwd">
+			<value>${sys.credit.client.pengyuan.pwd}</value>
+		</property>
+		<property name="queryType">
+			<value>25121</value>
+		</property>
+		<property name="reportIds">
+			<value>13400</value>
+		</property>
+	</bean>
+	
+
+	<!-- 政通银行卡鉴权 测试环境 <bean name="ds_zhengtong_AuthenBankCard" class="com.bill99.ifs.crs.ds.client.zhengtong.ZTAuthenBankCardDataSourceRequestor"> 
+		<property name="paramIds"> <value>name,cardNo,cardId,phone</value> </property> 
+		<property name="zhengtong_address"> <value>https://112.65.144.19:9085/servlet/json</value> 
+		</property> <property name="accessId"> <value>kuaiqiantest</value> </property> 
+		<property name="ptycd"> <value>kuaiqiantest</value> </property> <property 
+		name="accessKey"> <value>1234@abcd</value> </property> <property name="encrykey"> 
+		<value>v0onOJYJBJFQ00ppQ4hF</value> </property> <property name="biztypDesc"> 
+		<value>银行卡认证</value> </property> <property name="sourceChannel"> <value>0</value> 
+		</property> <property name="placeId"> <value>00</value> </property> <property 
+		name="biztyp"> <value>0541</value> </property> </bean> -->
+	<!-- wcs add 捷为工商信息查询 -->
+	<bean name="ds_jiewei_queryCorpInfo"
+		class="com.wanda.credit.ds.client.jiewei.QueryCorpInfoDataSourceRequestor">
+		<property name="paramIds">
+			<value>corpName,province,registerNo</value>
+		</property>
+	</bean>
+	
+	<!-- wcs add 数据源名称：爰金公安负面 数据源描述：公安负面 -->
+	<bean name="ds_yuanjin_creditScore"
+		class="com.wanda.credit.ds.client.aijin.CreditScoreDataSourceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo</value>
+		</property>
+		<property name="aijin_address">
+			<value>${sys.credit.client.yuanjin.creditscore.url}</value>
+		</property>
+		<property name="account">
+			<value>${sys.credit.client.yuanjin.creditscore.account}</value>
+		</property>
+		<property name="privateKey">
+			<value>${sys.credit.client.yuanjin.creditscore.key}</value>
+		</property>
+	</bean>
+	
+	<!-- 数据源序号：2 数据源名称：依图照片登记 数据源描述：登记身份证照片 -->
+	<bean name="ds_yitu_djNew"
+		class="com.wanda.credit.ds.client.yitu.YiTuRegisteNewSourceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,photo,pType,transType,retFlag</value>
+		</property>
+		<property name="registImgApi">
+			<value>${sys.credit.client.http.yitu.saas.upload}</value>
+		</property>
+		<property name="yitu_saas_address">
+			<value>${sys.credit.client.http.yitu.saas.address}</value>
+		</property>
+		<property name="accessId">
+			<value>${sys.credit.client.http.yitu.accessid}</value>
+		</property>
+		<property name="accessKey">
+			<value>${sys.credit.client.http.yitu.accesskey}</value>
+		</property>
+	</bean>
+
+	<bean name="ds_qxb_queryCorpInfo"
+		class="com.wanda.credit.ds.client.qixinbao.QXBQueryCorpInfoDataSourceRequestor">
+		<property name="paramIds">
+			<value>keyWord,keyType,acct_id</value>
+		</property>
+	</bean>
+
+	<!-- 数据源名称：启信宝 数据源描述：根据企业名称关键字或者企业注册号获取企业列表 -->
+	<bean name="ds_qxb_enterpriseList"
+		class="com.wanda.credit.ds.client.qixinbao.QXBEnterSearchListDSRequestor">
+		<property name="paramIds">
+			<value>keyWord,skip</value>
+		</property>
+	</bean>
+
+	<!-- 数据源名称：网数- DMP -集奥 数据源描述：手机三要素验证 -->
+	<bean name="ds_dmp_mobileCheck"
+		class="com.wanda.credit.ds.client.ji_ao.reqDMP.DMPJiAoMobileCheckDSRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,mobile</value>
+		</property>
+		<property name="testFlag">
+			<value>${sys.credit.client.testFlag}</value>
+		</property>
+	</bean>
+
+	<!-- 数据源名称：网数- DMP -集奥 数据源描述：手机号码当前状态 -->
+	<bean name="ds_dmp_mobileStatus"
+		class="com.wanda.credit.ds.client.ji_ao.reqDMP.DMPJiAoMobileStatusDSRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,mobile</value>
+		</property>
+		<property name="testFlag">
+			<value>${sys.credit.client.testFlag}</value>
+		</property>
+	</bean>
+
+	<!-- 数据源名称：网数- DMP -集奥 数据源描述：手机号码在线时长 -->
+	<bean name="ds_dmp_mobileOlineTime"
+		class="com.wanda.credit.ds.client.ji_ao.reqDMP.DMPJiAoMobileTimeDSRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,mobile</value>
+		</property>
+		<property name="testFlag">
+			<value>${sys.credit.client.testFlag}</value>
+		</property>
+	</bean>
+
+	<!-- 数据源名称：JUHE bairong银行卡鉴权 数据源描述：JUHE bairong银行卡鉴权(改为直接接入聚合 by wj) -->
+	<bean name="ds_juhe_AuthenBankCard4_new"
+		class="com.wanda.credit.ds.client.juhe.JuHeAuthenBankCard4_NewDataSourceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,cardId,phone</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：JUHE 银行卡二要素鉴权 数据源描述：-->
+	<bean name="ds_juhe_AuthenBankCard2_new"
+		class="com.wanda.credit.ds.client.juhe.JuHeAuthenBankCard2_NewDataSourceRequestor">
+		<property name="paramIds">
+			<value>name,cardId</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：JUHE bairong银行卡鉴权 数据源描述：JUHE bairong银行卡鉴权(改为直接接入聚合 by wj)-->
+	<bean name="ds_juhe_AuthenBankCard3_new"
+		class="com.wanda.credit.ds.client.juhe.JuHeAuthenBankCard3_NewDataSourceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,cardId</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：JUHE bairong银行卡鉴权 数据源描述：JUHE bairong银行卡鉴权 -->
+	<bean name="ds_juhe_AuthenBankCard4"
+		class="com.wanda.credit.ds.client.wangshu.JuHeAuthenBankCard4DataSourceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,cardId,phone</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：JUHE bairong银行卡鉴权 数据源描述：JUHE bairong银行卡鉴权 -->
+	<bean name="ds_juhe_AuthenBankCard3"
+		class="com.wanda.credit.ds.client.wangshu.JuHeAuthenBankCard3DataSourceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,cardId</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：45 数据源名称：依图人脸识别纯照片比对接口-101.1 数据源描述：1：n 1:1 人脸识别服务 -->
+	<bean name="ds_yitu_authPhoto102"
+		class="com.wanda.credit.ds.client.yituNew.YiTuLocalFacialPhotographContrast">
+		<property name="paramIds">
+			<value>cardNo,photo,name,transType,query_image_content</value>
+		</property>
+		<property name="verifImgApi">
+			<value>${sys.credit.client.http.yitu.localsaas.valid}</value>
+		</property>
+		<property name="yitu_saas_address">
+			<value>${sys.credit.client.http.yitu.ip.host}</value>
+		</property>
+		<property name="accessId">
+			<value>${sys.credit.client.http.yitu.accessid.valid}</value>
+		</property>
+		<property name="accessKey">
+			<value>${sys.credit.client.http.yitu.accesskey.valid}</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：2 数据源名称：依图照片登记-100.1 数据源描述：登记身份证照片 -->
+	<bean name="ds_yitu_dj100"
+		class="com.wanda.credit.ds.client.yituNew.YiTuPhotoRegisterRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,photo,pType,transType,retFlag</value>
+		</property>
+		<property name="registerImgApi">
+			<value>${sys.credit.client.http.yitu.newsaas.upload}</value>
+		</property>
+		<property name="yitu_saas_address">
+			<value>${sys.credit.client.http.yitu.saas.address}</value>
+		</property>
+		<property name="accessId">
+			<value>${sys.credit.client.http.yitu.accessid}</value>
+		</property>
+		<property name="accessKey">
+			<value>${sys.credit.client.http.yitu.accesskey}</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：45 数据源名称：依图人脸识别 加密数据包比对接口-101.1 数据源描述：1：n 1:1 人脸识别服务 -->
+	<bean name="ds_yitu_authPack101"
+		class="com.wanda.credit.ds.client.yituNew.YiTuAuthPackageRequestor">
+		<property name="paramIds">
+			<value>cardNo,photo,name,transType</value>
+		</property>
+		<property name="verifImgApi">
+			<value>${sys.credit.client.http.yitu.newsaas.valid}</value>
+		</property>
+		<property name="yitu_saas_address">
+			<value>${sys.credit.client.http.yitu.saas.address}</value>
+		</property>
+		<property name="accessId">
+			<value>${sys.credit.client.http.yitu.accessid}</value>
+		</property>
+		<property name="accessKey">
+			<value>${sys.credit.client.http.yitu.accesskey}</value>
+		</property>
+		<property name="true_negative_rate">
+			<value>${sys.credit.client.http.yitu.trueNagetiveRate}</value>
+			<!--<value>99.9</value> -->
+		</property>
+	</bean>
+	<!-- 数据源序号：45 数据源名称：依图人脸识别纯照片比对接口-101.1 数据源描述：1：n 1:1 人脸识别服务 -->
+	<bean name="ds_yitu_authPhoto101"
+		class="com.wanda.credit.ds.client.yituNew.YiTuAuthPhotoRequestor">
+		<property name="paramIds">
+			<value>cardNo,photo,name,transType</value>
+		</property>
+		<property name="verifImgApi">
+			<value>${sys.credit.client.http.yitu.newsaas.valid}</value>
+		</property>
+		<property name="yitu_saas_address">
+			<value>${sys.credit.client.http.yitu.saas.address}</value>
+		</property>
+		<property name="accessId">
+			<value>${sys.credit.client.http.yitu.accessid}</value>
+		</property>
+		<property name="accessKey">
+			<value>${sys.credit.client.http.yitu.accesskey}</value>
+		</property>
+		<property name="true_negative_rate">
+			<value>${sys.credit.client.http.yitu.trueNagetiveRate}</value>
+			<!--<value>99.9</value> -->
+		</property>
+	</bean>
+	
+
+	<!-- 易道博识 -->
+	<bean name="ds_yidao_ocr" class="com.wanda.credit.ds.client.yidaoOcr.YidaoOcrRequestor">
+		<property name="paramIds">
+			<value>recotype,image,side</value>
+		</property>
+		<property name="nullableIds">
+			<value>side</value>
+		</property>
+	</bean>
+	<!-- 易道博识 -->
+	<bean name="ds_yidao_cloud_ocr" class="com.wanda.credit.ds.client.yidaoOcr.YidaoOcrCloudRequestor">
+		<property name="paramIds">
+			<value>recotype,image,side</value>
+		</property>
+		<property name="nullableIds">
+			<value>side</value>
+		</property>
+	</bean>
+	<!-- 商汤静默活体检测以及水印照人脸比对。 -->
+	<bean name="ds_shangtang_contrast" class="com.wanda.credit.ds.client.shangtang.ShangTangVideoPhotoRequestor">
+		<property name="paramIds">
+			<value>video_file,image_file,return_image,negative_rate</value>
+		</property>
+	</bean>
+	
+	<!-- 商汤静默活体检测以及水印照人脸比对。 -->
+	<bean name="ds_shangtang_contrast02" class="com.wanda.credit.ds.client.shangtang.ShangTangVideoImageRequestor">
+		<property name="paramIds">
+			<value>video_file,image_file,return_image,negative_rate</value>
+		</property>
+	</bean>
+
+    <!-- 
+	        数据源名称：trulioo
+		数据源描述：trulioo 支持的国家列表
+	-->
+	<bean name="ds_trulioo_countryCode"
+		class="com.wanda.credit.ds.client.trulioo.CountryCodesDSRequestor">
+		<property name="paramIds">
+			<value></value>
+		</property>
+	</bean>
+    <!-- 
+	        数据源名称：trulioo
+		数据源描述：trulioo 不同国家需要的json配置信息
+	-->
+	<bean name="ds_trulioo_jsonSchema"
+		class="com.wanda.credit.ds.client.trulioo.JsonSchemaDSRequestor">
+		<property name="paramIds">
+			<value>countryCode</value>
+		</property>
+	</bean>
+	<!-- 
+	        数据源名称：trulioo
+		数据源描述：trulioo 支持国家的下属区域
+	-->
+	<bean name="ds_trulioo_subdivision"
+		class="com.wanda.credit.ds.client.trulioo.SubdivisionsDSRequestor">
+		<property name="paramIds">
+			<value>countryCode</value>
+		</property>
+	</bean>
+	<!-- 
+	        数据源名称：trulioo
+		数据源描述：trulioo 外国人信息认证
+	-->
+	<bean name="ds_trulioo_verify"
+		class="com.wanda.credit.ds.client.trulioo.VerifyForeignerDSRequestor">
+		<property name="paramIds">
+			<value>countryCode,verify_data</value>
+		</property>
+		<property name="nullableIds">
+			<value>Location,Communication,DriverLicence,NationalIds,Passport,CountrySpecific</value>
+		</property>
+	</bean>
+   <!-- 
+	        数据源名称：trulioo
+		数据源描述：trulioo 外国人信息认证
+	-->
+	<bean name="ds_trulioo_verify_new"
+		class="com.wanda.credit.ds.client.trulioo.VerifyForeignerNewRequestor">
+		<property name="paramIds">
+			<value>countryCode,verify_data</value>
+		</property>
+		<property name="nullableIds">
+			<value>Location,Communication,DriverLicence,NationalIds,Passport,CountrySpecific</value>
+		</property>
+	</bean>
+    
+	<!-- 数据源序号：10 数据源名称：中数数据源 数据源描述：个人资信数据查询通过企业名称和人员姓名 -->
+	<bean name="ds_zsPersonNameQuery"
+		class="com.wanda.credit.ds.client.zhongshu.ZSPersonInfoDataRequestourByPosition">
+		<property name="paramIds">
+			<value>entname,personname,acct_id</value>
+		</property>
+		<property name="address">
+			<value>${sys.credit.client.zs.address2}</value>
+		</property>
+		<property name="userId">
+			<value>${sys.credit.client.zs.userId}</value>
+		</property>
+		<property name="userPwd">
+			<value>${sys.credit.client.zs.userPwd}</value>
+		</property>
+		<property name="orders">
+			<value>00000000001110000000000000000000000</value>
+		</property>
+		<property name="keyType">
+			<value>1</value>
+		</property>
+	</bean>
+    
+      <!--
+	    wuchsh add
+		数据源名称：吉信鉴权 
+		数据源描述：2 3 4要素 
+	-->
+	<bean name="ds_jixin_AuthenBankCard2"
+		class="com.wanda.credit.ds.client.jixin.JiXinAuthenBankCard2DataSourceRequestor">
+		<property name="paramIds">
+			<value>name,cardId</value>
+		</property>
+	</bean>
+	<bean name="ds_jixin_AuthenBankCard3"
+		class="com.wanda.credit.ds.client.jixin.JiXinAuthenBankCardDataSourceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,cardId</value>
+		</property>
+	</bean>
+	<bean name="ds_jixin_AuthenBankCard4"
+		class="com.wanda.credit.ds.client.jixin.JiXinAuthenBankCard4DataSourceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,cardId,phone</value>
+		</property>
+	</bean>
+	
+
+    <!-- 数据源名称：聚合移动运营商三要素查询  数据源描述：聚合移动运营商三要素查询 -->
+    <bean name="ds_juhe_mobileCheck"
+          class="com.wanda.credit.ds.client.juhe.JuheMobileCheckDSRequestor">
+        <property name="paramIds">
+            <value>name,cardNo,mobile</value>
+        </property>
+    </bean>
+    <!-- 数据源名称：拍拍信移动运营商三要素查询  数据源描述：拍拍信移动运营商三要素查询 -->
+    <bean name="ds_ppx_mobileCheck"
+          class="com.wanda.credit.ds.client.ppxin.PPXMobileCheckDSRequestor">
+        <property name="paramIds">
+            <value>name,cardNo,mobile</value>
+        </property>
+    </bean>
+
+     <!-- 数据源名称：聚合身份核验  数据源描述：聚合身份核验-->
+    <bean name="ds_juhe_noPhotojx"
+		class="com.wanda.credit.ds.client.juhe.JuhePoliceDSRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,acct_id,flag</value>
+		</property>
+	</bean>
+
+	<!-- 数据源序号：45 数据源名称：百度人脸识别纯照片比对接口-101.1 数据源描述：1：n 1:1 人脸识别服务 -->
+	<bean name="ds_baidu_face"
+		class="com.wanda.credit.ds.client.baiduFace.BaiduFaceDetection">
+		<property name="paramIds">
+			<value>cardNo,photo,name,transType,query_image_content</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：45 数据源名称：百度人脸识别纯照片比对接口-2张活体照比对 -->
+	<bean name="ds_baidu_face_live"
+		class="com.wanda.credit.ds.client.baiduFace.BaiduLiveFaceDetection">
+		<property name="paramIds">
+			<value>cardNo,photo,name,query_image_content</value>
+		</property>
+	</bean>
+
+	<!-- 数据源名称：网数- DMP -集奥 数据源描述：手机号码在线时长,在网状态 -->
+	<bean name="ds_jiao_mobileOlineTime"
+		class="com.wanda.credit.ds.client.jiAoDS.JiAoMobileTimeDSRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,mobile,innerIfType</value>
+		</property>
+	</bean>
+	<!--数据源描述：集奥 手机二要素验证 -->
+	<bean name="ds_dmp_mobilenameChk_new"
+		class="com.wanda.credit.ds.client.jiAoDS.JiAoMobileNameRequestor">
+		<property name="paramIds">
+			<value>name,mobile</value>
+		</property>
+	</bean>
+	
+	<!-- 数据源名称：网数- DMP -集奥 数据源描述：车辆违章支持城市查询 -->
+	<bean name="ds_juhe_carCity"
+		class="com.wanda.credit.ds.client.juhe.JuHeCarCityRequestor">
+		<property name="paramIds">
+			<value>province</value>
+		</property>
+		<property name="nullableIds">
+			<value>province</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：网数- DMP -集奥 数据源描述：车辆违章查询 -->
+	<bean name="ds_juhe_carillegal"
+		class="com.wanda.credit.ds.client.juhe.JuHeCarBreakRequestor">
+		<property name="paramIds">
+			<value>carNumber,carEngine,carCode,carType</value>
+		</property>
+		<property name="nullableIds">
+			<value>carEngine,carCode</value>
+		</property>
+	</bean> 
+	
+	<!-- 数据源序号：45 数据源名称：爰金人脸识别纯照片比对接口 -->
+	<bean name="ds_aijin_facePhoto"
+		class="com.wanda.credit.ds.client.aijin.AiJinFaceDataSourceRequestor">
+		<property name="paramIds">
+			<value>cardNo,name,query_image_content</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：45 数据源名称：爰金人脸识别直连查询中心比对接口 -->
+	<bean name="ds_aijin_faceDirect"
+		class="com.wanda.credit.ds.client.aijin.AiJinFaceDirectRequestor">
+		<property name="paramIds">
+			<value>cardNo,name,query_image_content</value>
+		</property>
+	</bean>
+	<!-- 商汤静默活体检测以及水印照人脸比对。 -->
+	<bean name="ds_shangtang_stateless" class="com.wanda.credit.ds.client.shangtang.ShangTangVideoCheckRequestor">
+		<property name="paramIds">
+			<value>video_file,return_image,negative_rate,name,cardNo,acct_id</value>
+		</property>
+		<property name="nullableIds">
+			<value>acct_id</value>
+		</property>
+	</bean>
+	<bean name="ds_policeAuth_photov2"
+		class="com.wanda.credit.ds.client.policeAuthV2.PoliceFacePhotoV2Requestor">
+		<property name="paramIds">
+			<value>cardNo,name,query_image_content</value>
+		</property>
+		<property name="nullableIds">
+			<value>face_switch</value>
+		</property>
+	</bean>
+	<bean name="ds_policeAuth_photoCard"
+		class="com.wanda.credit.ds.client.policeAuthV2.PoliceFaceCardCheckRequestor">
+		<property name="paramIds">
+			<value>cardNo,name</value>
+		</property>
+	</bean>
+	<!-- 法海-法人负面详情 -->
+	<bean name="ds_fahai_riskmge_detail_new"
+		class="com.wanda.credit.ds.client.fahai.FahaiDetailRequestor">
+		<property name="paramIds">
+			<value>datatype,entryId</value>
+		</property>
+	</bean>
+	<!-- 法海-法人负面列表 -->
+	<bean name="ds_fahai_riskmge_list_person_new"
+		class="com.wanda.credit.ds.client.fahai.FahaiRiskListRequestor">
+		<property name="paramIds">
+			<value>datatype,pname,cardNo,pageno,range</value>
+		</property>
+		<property name="nullableIds">
+			<value>pageno,range</value>
+		</property>
+	</bean>
+	<!-- 法海-企业负面列表 -->
+	<bean name="ds_fahai_riskmanage_new"
+		class="com.wanda.credit.ds.client.fahai.FahaiRiskManagerRequestor">
+		<property name="paramIds">
+			<value>datatype,pname,pageno,range,crawlTime</value>
+		</property>
+		<property name="nullableIds">
+			<value>pageno,range,crawlTime</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：45 数据源名称：远鉴人脸识别纯照片比对接口 -->
+	<bean name="ds_yuanjian_face"
+		class="com.wanda.credit.ds.client.yuanjian.YuanJFaceSourceRequestor">
+		<property name="paramIds">
+			<value>cardNo,name,query_image_content,file_id</value>
+		</property>
+		<property name="nullableIds">
+			<value>file_id</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：45 数据源名称：政通高清人像比对服务 -->
+	<bean name="ds_zhengt_face251"
+		class="com.wanda.credit.ds.client.zhengtong.ZTFace251DataSourceRequestor">
+		<property name="paramIds">
+			<value>cardNo,name,query_image_content</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：45 数据源名称：依图人脸识别纯照片比对接口-101.1 数据源描述：1：n 1:1 人脸识别服务 -->
+	<bean name="ds_yitu_authPack103"
+		class="com.wanda.credit.ds.client.yituNew.YiTuPacketsNoPhotoRequestor">
+		<property name="paramIds">
+			<value>cardNo,name,transType,query_image_package,negative_rate,return_image</value>
+		</property>
+		<property name="yitu_saas_address">
+			<value>${sys.credit.client.http.yitu.ip.host}</value>
+		</property>
+		<property name="accessId">
+			<value>${sys.credit.client.http.yitu.accessid.valid}</value>
+		</property>
+		<property name="accessKey">
+			<value>${sys.credit.client.http.yitu.accesskey.valid}</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：45 数据源名称：百度人脸检测接口 -->
+	<bean name="ds_baidu_faceCheck"
+		class="com.wanda.credit.ds.client.baiduFace.BaiduFaceCheckDetection">
+		<property name="paramIds">
+			<value>query_image_content</value>
+		</property>
+	</bean>
+	 <!-- 数据源名称：聚合身份核验  数据源描述：聚合身份核验-->
+    <bean name="ds_yuanjian_jx"
+		class="com.wanda.credit.ds.client.yuanjian.YuanJPoliceSourceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,acct_id</value>
+		</property>
+	</bean>
+	 <!-- 数据源名称：聚合身份核验  数据源描述：聚合身份核验-->
+    <bean name="ds_fahai_mocparty_new"
+		class="com.wanda.credit.ds.client.fahai.FahaiMocpartyRequestor">
+		<property name="paramIds">
+			<value>name,cardNo</value>
+		</property>
+	</bean>
+	
+	<!-- 数据源名称：百度身份证ocr-->
+    <bean name="ds_baidu_ocr"
+		class="com.wanda.credit.ds.client.baiduFace.BaiduIdcardOcr">
+		<property name="paramIds">
+			<value>recotype,image,side</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：腾讯身份证ocr-->
+    <bean name="ds_tengxun_ocr"
+		class="com.wanda.credit.ds.client.tengxun.TengxunIdcardOcr">
+		<property name="paramIds">
+			<value>recotype,image,side</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：腾讯身份证ocr-->
+    <bean name="ds_juhe_multiple"
+		class="com.wanda.credit.ds.client.juhe.JuheMultiDSRequestor">
+		<property name="paramIds">
+			<value>mobile</value>
+		</property>
+	</bean>
+	
+	<!-- 数据源序号：45 数据源名称：依图人脸识别纯照片比对接口-101.1 数据源描述：1：n 1:1 人脸识别服务 -->
+	<bean name="ds_yitu_getPhotos"
+		class="com.wanda.credit.ds.client.yituNew.YiTuGetPackPhotosRequestor">
+		<property name="paramIds">
+			<value>cardNo,name,query_image_package,negative_rate,return_image</value>
+		</property>
+		<property name="yitu_saas_address">
+			<value>${sys.credit.client.http.yitu.ip.host}</value>
+		</property>
+		<property name="accessId">
+			<value>${sys.credit.client.http.yitu.accessid.valid}</value>
+		</property>
+		<property name="accessKey">
+			<value>${sys.credit.client.http.yitu.accesskey.valid}</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：45 数据源名称：远鉴人脸识别纯照片比对接口 -->
+	<bean name="ds_zhongsheng_face"
+		class="com.wanda.credit.ds.client.zhongsheng.ZhongSFaceDataSourceRequestor">
+		<property name="paramIds">
+			<value>cardNo,name,query_image_content</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：45 数据源名称：吉信人脸识别纯照片比对接口 -->
+	<bean name="ds_jixin_face"
+		class="com.wanda.credit.ds.client.jixin.JiXinFaceDataSourceRequestor">
+		<property name="paramIds">
+			<value>cardNo,name,query_image_content</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：45 数据源名称：启信宝股东出资比例查询 -->
+	<bean name="ds_qxb_shareRatio"
+		class="com.wanda.credit.ds.client.qixinbao.QXBQueryShareRatioRequestor">
+		<property name="paramIds">
+			<value>name</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：45 数据源名称：模型系统变量加载 -->
+	<bean name="ds_model_reload"
+		class="com.wanda.credit.ds.client.modelLoad.ModelSourceRequestor">
+		<property name="paramIds">
+			<value>flag</value>
+		</property>
+	</bean>
+	<bean name="ds_policeAuth_four"
+		class="com.wanda.credit.ds.client.policeAuthV2.PoliceFourCheckRequestor">
+		<property name="paramIds">
+			<value>cardNo,name,start_date,end_date</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：45 数据源名称：天创-驾驶证核验 -->
+	<bean name="ds_tianchuang_driverVerify"
+		class="com.wanda.credit.ds.client.tianchuang.TCDriverLicenVerifyRequestor">
+		<property name="paramIds">
+			<value>name,licenseNo,carModels,fileNo,issueDate,startDate,expiryDate</value>
+		</property>
+		<property name="nullableIds">
+			<value>carModels,fileNo,issueDate,startDate,expiryDate</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：45 数据源名称：小安人脸识别纯照片比对接口 -->
+	<bean name="ds_xiaoan_face"
+		class="com.wanda.credit.ds.client.xiaoan.XiaoanFaceSourceRequestor">
+		<property name="paramIds">
+			<value>cardNo,name,query_image_content</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：腾讯云身份证ocr-->
+    <bean name="ds_tengxun_cloud_ocr"
+		class="com.wanda.credit.ds.client.tengxun.TXCloudIdcardOcr">
+		<property name="paramIds">
+			<value>recotype,image,side</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：点微不良信息数据查询 数据源描述：点微不良信息数据查询 -->
+	<bean name="ds_dianwei_badMsg"
+		class="com.wanda.credit.ds.client.dianwei.DWeiBadMsgSourceRequestor">
+		<property name="paramIds">
+			<value>cardNo,name</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：点微行驶证数据查询 数据源描述：点微行驶证数据查询 -->
+	<bean name="ds_dianwei_car"
+		class="com.wanda.credit.ds.client.dianwei.DWeiCarCheckRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,carNo</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：启信宝 数据源描述：根据人名关键字或者企业注册号获取企业列表 -->
+	<bean name="ds_qxb_enternameList"
+		class="com.wanda.credit.ds.client.qixinbao.QXBNameSearchListDSRequestor">
+		<property name="paramIds">
+			<value>keyWord,skip,matchType,region</value>
+		</property>
+		<property name="nullableIds">
+			<value>matchType,region</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：爰金驾驶证核验查询 数据源描述：爰金驾驶证核验查询 -->
+	<bean name="ds_xiaohe_police"
+		class="com.wanda.credit.ds.client.xiaohe.XiaoHePoliceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,acct_id</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：小河银行卡鉴权 数据源描述：银行卡鉴权-->
+	<bean name="ds_xiaohe_bankCard3"
+		class="com.wanda.credit.ds.client.xiaohe.XiaoHeBankThreeRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,cardId</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：小河银行卡鉴权 数据源描述：银行卡鉴权 -->
+	<bean name="ds_xiaohe_bankCard4"
+		class="com.wanda.credit.ds.client.xiaohe.XiaoHeBankFourRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,cardId,phone</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：linkface银行卡鉴权 数据源描述：银行卡鉴权-->
+	<bean name="ds_linkface_bank3"
+		class="com.wanda.credit.ds.client.linkFace.LinkBank3SourceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,cardId</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：linkface银行卡鉴权 数据源描述：银行卡鉴权-->
+	<bean name="ds_linkface_bank4"
+		class="com.wanda.credit.ds.client.linkFace.LinkBank4SourceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,cardId,phone</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：天创银行卡鉴权 数据源描述：银行卡三要素鉴权-->
+	<bean name="ds_tianchuang_bank3"
+		class="com.wanda.credit.ds.client.tianchuang.TCBankCheck3Requestor">
+		<property name="paramIds">
+			<value>name,cardNo,cardId</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：天创银行卡鉴权 数据源描述：银行卡三要素鉴权-->
+	<bean name="ds_tianchuang_bank4"
+		class="com.wanda.credit.ds.client.tianchuang.TCBankCheck4Requestor">
+		<property name="paramIds">
+			<value>name,cardNo,cardId,phone</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：天创银行卡鉴权 数据源描述：银行卡三要素鉴权-->
+	<bean name="ds_zhenshi_bank3"
+		class="com.wanda.credit.ds.client.zhenshi.ZhenSBank3SourceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,cardId</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：小河手机运营商三要素查询  数据源描述：小河手机运营商三要素查询 -->
+    <bean name="ds_xiaohe_mobileCheck"
+          class="com.wanda.credit.ds.client.xiaohe.XiaoHeMobileRequestor">
+        <property name="paramIds">
+            <value>name,cardNo,mobile</value>
+        </property>
+    </bean>
+    <!-- 数据源名称：启信宝 数据源描述：根据人名和企业名称获得投资信息 -->
+	<bean name="ds_qxb_enternameCorp"
+		class="com.wanda.credit.ds.client.qixinbao.QXBNameCorpRequestor">
+		<property name="paramIds">
+			<value>name,entname</value>
+		</property>
+	</bean>
+	 <!-- 数据源名称：启信宝 数据源描述：根据人名和企业名称获得历史投资信息 -->
+	<bean name="ds_qxb_historynameCorp"
+		class="com.wanda.credit.ds.client.qixinbao.QXBNameCorpHisRequestor">
+		<property name="paramIds">
+			<value>name,entname</value>
+		</property>
+	</bean>
+	<!--数据源描述：小河 手机二要素验证 -->
+	<bean name="ds_xiaohe_mobilenameChk"
+		class="com.wanda.credit.ds.client.xiaohe.XiaoHeMobileNameRequestor">
+		<property name="paramIds">
+			<value>name,mobile</value>
+		</property>
+	</bean>
+	<!--数据源描述：小河 手机在网时长 -->
+	<bean name="ds_xiaohe_mobileOnline"
+		class="com.wanda.credit.ds.client.xiaohe.XiaoHeMobileOnlineRequestor">
+		<property name="paramIds">
+			<value>mobile,attributeEn,name,cardNo</value>
+		</property>
+		<property name="nullableIds">
+			<value>name,cardNo</value>
+		</property>
+	</bean>
+	<!--数据源描述：小河 手机在网时长 -->
+	<bean name="ds_xiaohe_mobileState"
+		class="com.wanda.credit.ds.client.xiaohe.XiaoHeMobileStateRequestor">
+		<property name="paramIds">
+			<value>mobile,attributeEn,name,cardNo</value>
+		</property>
+		<property name="nullableIds">
+			<value>name,cardNo</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：政通银行卡鉴权 数据源描述：银行卡三要素鉴权-->
+	<bean name="ds_zhengt_bank3"
+		class="com.wanda.credit.ds.client.zhengtong.ZTBankGlad3SourceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,cardId</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：政通银行卡鉴权 数据源描述：银行卡三要素鉴权-->
+	<bean name="ds_zhengt_bank4"
+		class="com.wanda.credit.ds.client.zhengtong.ZTBankGlad4SourceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,cardId,phone</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：商汤静默视频活体检测-->
+	<bean name="ds_shangtang_liveness"
+		class="com.wanda.credit.ds.client.shangtang.STGladVideoStalessRequestor">
+		<property name="paramIds">
+			<value>vopath</value>
+		</property>
+	</bean>
+	<!--数据源描述：信雅达 手机在网时长 -->
+	<bean name="ds_xinyada_mobileOnline"
+		class="com.wanda.credit.ds.client.xinyada.XinYDMobileOnlineRequestor">
+		<property name="paramIds">
+			<value>mobile,attributeEn,name,cardNo</value>
+		</property>
+		<property name="nullableIds">
+			<value>name,cardNo</value>
+		</property>
+	</bean>
+	<!--数据源描述：信雅达 手机在网状态 -->
+	<bean name="ds_xinyada_mobileState"
+		class="com.wanda.credit.ds.client.xinyada.XinYDMobileStateRequestor">
+		<property name="paramIds">
+			<value>mobile,attributeEn,name,cardNo</value>
+		</property>
+		<property name="nullableIds">
+			<value>name,cardNo</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：聚合车辆信息查询  数据源描述：聚合车辆信息查询 -->
+    <bean name="ds_juhe_carSearch"
+          class="com.wanda.credit.ds.client.juhe.JuHeCarSearchDataSourceRequestor">
+        <property name="paramIds">
+            <value>name,carNumber,carType</value>
+        </property>
+    </bean>
+    <!-- 数据源名称：聚合车辆信息查询  数据源描述：聚合车辆信息查询 -->
+    <bean name="ds_juhe_driverSearch"
+          class="com.wanda.credit.ds.client.juhe.JuHeDriverDataSourceRequestor">
+        <property name="paramIds">
+            <value>name,cardNo</value>
+        </property>
+    </bean>
+    <!-- 商汤身份证ocr -->
+	<bean name="ds_shangtang_ocr_card" class="com.wanda.credit.ds.client.shangtang.STGladCardOCRStalessRequestor">
+		<property name="paramIds">
+			<value>recotype,image,side</value>
+		</property>
+		<property name="nullableIds">
+			<value>side</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：创蓝空号检测-->
+    <bean name="ds_chuanglan_mobileEmpty"
+          class="com.wanda.credit.ds.client.chuanglan.CLMobileEmptyRequestor">
+        <property name="paramIds">
+            <value>mobile</value>
+        </property>
+    </bean>
+    <!-- 数据源名称：冰鉴商标查询-->
+    <bean name="ds_bingjian_brand"
+          class="com.wanda.credit.ds.client.bingjian.BJBrandRequestor">
+        <property name="paramIds">
+            <value>keyword,dataType,intCls,pageSize,pageIndex</value>
+        </property>
+        <property name="nullableIds">
+			<value>dataType,intCls,pageSize,pageIndex</value>
+		</property>
+    </bean>
+    
+	<!-- 商汤营业执照ocr -->
+	<bean name="ds_shangtang_ocr_license" class="com.wanda.credit.ds.client.shangtang.STGladLicenseOCRRequestor">
+		<property name="paramIds">
+			<value>image</value>
+		</property>
+	</bean>
+	<bean name="ds_shangtang_video_photo" class="com.wanda.credit.ds.client.shangtang.ShangTangVideoOfPhotoRequestor">
+		<property name="paramIds">
+			<value>video_file</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：天创银行卡鉴权 数据源描述：银行卡三要素鉴权-->
+	<bean name="ds_tianchuang_bank5"
+		class="com.wanda.credit.ds.client.tianchuang.TCBankCheck5Requestor">
+		<property name="paramIds">
+			<value>name,cardNo,cardId,phone</value>
+		</property>
+	</bean>
+	
+	<!-- 数据源名称：爰金  数据源描述：社保查询-->
+	<bean name="ds_aijin_insurance"
+		class="com.wanda.credit.ds.client.aijin.AiJinInsuranceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo</value>
+		</property>
+		<property name="nullableIds">
+			<value>name</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：聚合  数据源描述：运营商月度消费-->
+	<bean name="ds_juhe_mobile_consume"
+		class="com.wanda.credit.ds.client.juhe.JuHeMobileConsumeRequestor">
+		<property name="paramIds">
+			<value>mobile</value>
+		</property>
+		<property name="nullableIds">
+			<value>name,cardNo</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：小河  数据源描述：运营商月度消费-->
+	<bean name="ds_xiaohe_mobileconsume"
+		class="com.wanda.credit.ds.client.xiaohe.XiaoHeMobileConsumeRequestor">
+		<property name="paramIds">
+			<value>mobile</value>
+		</property>
+		<property name="nullableIds">
+			<value>name,cardNo</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：易道  数据源描述：易道发票验证-->
+	<bean name="ds_yidao_cloud_invoice"
+		class="com.wanda.credit.ds.client.yidaoOcr.YidaoInvoiceRequestor">
+		<property name="paramIds">
+			<value>invoice_type,invoice_no,invoice_code,check_code_last6,total,create_date</value>
+		</property>
+		<property name="nullableIds">
+			<value>total,check_code_last6</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：聚合  数据源描述：手机携号转网-->
+	<bean name="ds_juhe_mobile_switch"
+		class="com.wanda.credit.ds.client.juhe.JuHeSwitchnetworkRequestor">
+		<property name="paramIds">
+			<value>mobile</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：8 数据源名称：新中数数据源 数据源描述：组织机构查询 -->
+	<bean name="ds_zsCorpCredit_query"
+		class="com.wanda.credit.ds.client.zhongshunew.ZSCorpInfoCreditRequestor">
+		<property name="paramIds">
+			<value>creditcode,regno,name,orgcode,acct_id</value>
+		</property>
+		<property name="nullableIds">
+			<value>creditcode,regno,name,orgcode</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：2 数据源名称：公安简项查询 数据源描述：公安简项查询 -->
+	<bean name="ds_nciic_jx"
+		class="com.wanda.credit.ds.client.nciic.NciicDataSourceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo</value>
+		</property>
+	</bean>
+	<bean name="ds_anxin_noPhotojx"
+		class="com.wanda.credit.ds.client.anxin.AXinPoliceDSRequestor">
+		<property name="paramIds">
+			<value>name,cardNo</value>
+		</property>
+	</bean>
+	<bean name="ds_anxin_face"
+		class="com.wanda.credit.ds.client.anxin.AXinFaceCheckRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,query_image_content</value>
+		</property>
+	</bean>
+	<bean name="ds_juhe_carillegal36"
+		class="com.wanda.credit.ds.client.juhe.JuHeCarBreak36Requestor">
+		<property name="paramIds">
+			<value>carNumber,carEngine,carCode,carType</value>
+		</property>
+		<property name="nullableIds">
+			<value>carEngine,carCode</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：聚合车辆信息查询  数据源描述：聚合车辆信息查询 -->
+    <bean name="ds_juhe_driverArchvies"
+          class="com.wanda.credit.ds.client.juhe.JuHeDriverArchviesNoRequestor">
+        <property name="paramIds">
+            <value>name,cardNo,archviesNo</value>
+        </property>
+    </bean>
+    <!-- 数据源名称：聚合车辆信息查询  数据源描述：聚合车辆信息查询 -->
+    <bean name="ds_huifu_bank3"
+          class="com.wanda.credit.ds.client.huifu.HuiFuBankCard3DataSourceRequestor">
+        <property name="paramIds">
+            <value>name,cardNo,cardId</value>
+        </property>
+    </bean>
+    <!-- 数据源名称：聚合车辆信息查询  数据源描述：聚合车辆信息查询 -->
+    <bean name="ds_huifu_bank4"
+          class="com.wanda.credit.ds.client.huifu.HuiFuBankCard4DataSourceRequestor">
+        <property name="paramIds">
+            <value>name,cardNo,cardId,phone</value>
+        </property>
+    </bean>
+    <bean name="ds_xyan_uniondraw"
+          class="com.wanda.credit.ds.client.xyan.XYanUnionDrawSourceRequestor">
+        <property name="paramIds">
+            <value>name,cardNo,cardId</value>
+        </property>
+        <property name="nullableIds">
+			<value>cardId</value>
+		</property>
+    </bean>
+
+	<!-- 数据源名称：新颜人脸识别 -->
+	<bean name="ds_xyan_face"
+		class="com.wanda.credit.ds.client.xyan.XYanFacePhotoSourceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,query_image_content</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：新颜人脸识别 -->
+	<bean name="ds_xyan_faceDirect"
+		class="com.wanda.credit.ds.client.xyan.XYanFacePhotoDirectRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,query_image_content</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：点微驾驶证 -->
+	<bean name="ds_dianwei_driver"
+		class="com.wanda.credit.ds.client.dianwei.DWeiCarDriverRequestor">
+		<property name="paramIds">
+			<value>name,cardNo</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：45 数据源名称：国政通人脸识别 加密数据包比对接口 -->
+	<bean name="ds_guozt_facePack"
+		class="com.wanda.credit.ds.client.guoztFace.GuoZTFacePackSourceRequestor">
+		<property name="paramIds">
+			<value>cardNo,name,query_image_package</value>
+		</property>
+	</bean>
+	<!-- 数据源序号： 数据源名称：新中数数据源 数据源描述：企业股权出资比例 -->
+	<bean name="ds_zsCorpQuery_stock"
+		class="com.wanda.credit.ds.client.zhongshunew.ZSCorpStockRequestor">
+		<property name="paramIds">
+			<value>id,creditcode,regno,name,orgcode,mask,version,enttype,acct_id,entstatus</value>
+		</property>
+		<property name="nullableIds">
+			<value>id,creditcode,regno,name,orgcode,mask,version,enttype,entstatus</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：点微车辆信息查询  数据源描述：点微车辆信息查询 -->
+    <bean name="ds_dianwei_carSearch"
+          class="com.wanda.credit.ds.client.dianwei.DWeiCarDescRequestor">
+        <property name="paramIds">
+            <value>name,carNo,carType</value>
+        </property>
+    </bean>
+    <!-- 数据源名称：中金人脸识别 -->
+	<bean name="ds_zhongjin_faceDirect"
+		class="com.wanda.credit.ds.client.zhongjin.ZJinFacePhotoDirectRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,query_image_content</value>
+		</property>
+	</bean>
+	<!--数据源描述：聚合 手机二要素验证 -->
+	<bean name="ds_juhe_mobileName"
+		class="com.wanda.credit.ds.client.juhe.JuheMobileNameDSRequestor">
+		<property name="paramIds">
+			<value>name,mobile</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：天创银行卡鉴权 数据源描述：银行卡三要素详情版鉴权-->
+	<bean name="ds_tianchuang_detailBank3"
+		class="com.wanda.credit.ds.client.tianchuang.TCBankCheck3DetailRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,cardId</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：天创银行卡鉴权 数据源描述：银行卡三要素详情版鉴权-->
+	<bean name="ds_tianchuang_detailBank4"
+		class="com.wanda.credit.ds.client.tianchuang.TCBankCheck4DetailRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,cardId,phone</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：天创手机运营商三要素查询  数据源描述：天创手机运营商三要素查询 -->
+    <bean name="ds_tianchuang_mobile"
+          class="com.wanda.credit.ds.client.tianchuang.TCMobileCheckRequestor">
+        <property name="paramIds">
+            <value>name,cardNo,mobile</value>
+        </property>
+    </bean>
+    <!-- 数据源序号：xx 数据源名称：中数数据源 数据源描述：企业工商四要素人企核查 -->
+	<bean name="ds_zsCorpPerson_authen"
+		class="com.wanda.credit.ds.client.zhongshunew.ZSCorpPersonAuthenSourceRequestor">
+		<property name="paramIds">
+			<value>entmark1,entmark2,name,cardNo</value>
+			<!--企业名称,企业标识,人员姓名,个人标识码-->
+		</property>
+		<property name="nullableIds">
+			<value>entmark1,entmark2</value>
+		</property>
+	</bean>
+	<!-- 数据源序号：xx 数据源名称：中数数据源 数据源描述：空壳公司查询 -->
+	<bean name="ds_zsCorpShell_check"
+		class="com.wanda.credit.ds.client.zhongshunew.ZSShellCompanySourceRequestor">
+		<property name="paramIds">
+			<value>entname,creditcode,orgcodes,regno</value>
+		</property>
+		<property name="nullableIds">
+			<value>entname,creditcode,orgcodes,regno</value>
+		</property>
+	</bean>
+	<!-- 易道博识发票ocr -->
+	<bean name="ds_yidao_invoice_ocr" class="com.wanda.credit.ds.client.yidaoOcr.YidaoInvoiceOcrRequestor">
+		<property name="paramIds">
+			<value>image</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：新华人脸识别 -->
+	<bean name="ds_xinhua_face"
+		class="com.wanda.credit.ds.client.xinhua.XHuaFacePhotoRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,query_image_content</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：新华身份二要素核验查询 -->
+	<bean name="ds_xinhua_police"
+		class="com.wanda.credit.ds.client.xinhua.XinHuaPoliceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,acct_id</value>
+		</property>
+	</bean>
+	<!-- 商汤数字活体检测以及水印照人脸比对。 -->
+	<bean name="ds_shangtang_numVideo" class="com.wanda.credit.ds.client.shangtang.STGladNumberVideoRequestor">
+		<property name="paramIds">
+			<value>video_file,number,name,cardNo,acct_id</value>
+		</property>
+		<property name="nullableIds">
+			<value>acct_id</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：新华身份二要素核验查询 -->
+	<bean name="ds_xinhua_mock"
+		class="com.wanda.credit.ds.client.xinhua.XinHuaMockPoliceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：骏聿身份二要素核验查询 -->
+	<bean name="ds_junyu_police"
+		class="com.wanda.credit.ds.client.junyu.JunYuPoliceRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,acct_id</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：公安一所出入境核验查询 -->
+	<bean name="ds_police_cert"
+		class="com.wanda.credit.ds.client.policeAuthV2.PolicePassportCheckRequestor">
+		<property name="paramIds">
+			<value>cardNo,name,nation,idType,mode</value>
+		</property>
+	</bean>
+	<!-- 数据源名称：公安一所身份二要素核验查询 -->
+	<bean name="ds_policeAuth_card"
+		class="com.wanda.credit.ds.client.policeAuthV2.PoliceFaceCardCheck2Requestor">
+		<property name="paramIds">
+			<value>cardNo,name</value>
+		</property>
+	</bean>
+	<!-- 数据源名称:小河核验查询 数据源描述：小河驾驶证核验查询 -->
+	<bean name="ds_xiaohe_policeNoid"
+		class="com.wanda.credit.ds.client.xiaohe.XiaoHePoliceNoidRequestor">
+		<property name="paramIds">
+			<value>name,cardNo,acct_id</value>
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,54 @@
+pipeline {
+  agent any
+  triggers {
+      pollSCM('H/5 9-18 * * 1-5')
+  }
+  environment {
+    JAVA_HOME = '/u01/soft/jdk1.8.0_101'
+    SERVER_PORT = '30000'
+    JOB_NAME = 'app-wanda-credit-ds'
+  }
+  stages {
+    stage('build') {
+      steps {
+        sh 'mvn -B -DskipTests clean install'
+      }
+    }
+    stage('Deliver for development') {
+      when {
+          branch 'master'
+      }
+      steps {
+          ansiColor('xterm') {
+              ansiblePlaybook(
+                  playbook: '/u01/soft/jenkins_original/pipeline/deploy.yml',
+                  inventory: '/etc/ansible/hosts',
+                  colorized: true,
+                  extras: '-e JOB_NAME=${JOB_NAME} -e SERVER_PORT=${SERVER_PORT} -e WORKSPACE=${WORKSPACE}')
+          }
+      }
+    }
+    stage('Deploy for test') {
+      when {
+          branch 'st02'
+      }
+      steps {
+          ansiColor('xterm') {
+              ansiblePlaybook(
+                  playbook: '/u01/soft/jenkins_original/pipeline/deploy.yml',
+                  inventory: '/etc/ansible/hosts',
+                  colorized: true,
+                  extras: '-e JOB_NAME=${JOB_NAME} -e SERVER_PORT=${SERVER_PORT} -e WORKSPACE=${WORKSPACE}  -e BUILD_ID=${BUILD_ID}')
+          }
+      }
+    }
+    stage('Deploy for qcloud') {
+      when {
+          branch 'txyun'
+      }
+      steps {
+        sh 'echo \'deploy qcloud\''
+      }
+    }
+  }
+}

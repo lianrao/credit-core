@@ -1,0 +1,117 @@
+{"gathererModule":{"classType":"com.wanda.credit.dsconfig.model.module.GathererModule","actions":[
+{
+      "classType" : "com.wanda.credit.dsconfig.model.action.ExceptionAction",
+      "conflicted" : true,
+      "exprs" : [ {
+        "classType" : "com.wanda.credit.dsconfig.model.expression.ExceptionCondExpr",
+        "exprStr" : "数据源厂商返回异常",
+        "exprType" : "fmr",
+        "condition" : {
+          "classType" : "com.wanda.credit.dsconfig.model.expression.Expression",
+          "exprStr" : "${!exist(rspData.header.rtCode!'','E000000')}",
+          "exprType" : "fmr"
+        },
+    "loggingExpr" :{
+      "classType" : "com.wanda.credit.dsconfig.model.expression.LoggingCondExpr",
+          "exprStr" : "数据源返回异常，详细信息:${(rspData.header.rtMsg)!''}",
+          "exprType" : "fmr",
+      "level":"error"
+    },
+        "errCode" : "STATUS_FAILED_SYS_DS_EXCEPTION"
+      },{
+        "classType" : "com.wanda.credit.dsconfig.model.expression.ExceptionCondExpr",
+        "exprStr" : "数据源厂商返回异常",
+        "exprType" : "fmr",
+        "condition" : {
+          "classType" : "com.wanda.credit.dsconfig.model.expression.Expression",
+          "exprStr" : "${!exist(rspData.header.rtCode!'','E000000')}",
+          "exprType" : "fmr"
+        },
+    "loggingExpr" :{
+      "classType" : "com.wanda.credit.dsconfig.model.expression.LoggingCondExpr",
+          "exprStr" : "数据源返回异常，详细信息:${(rspData.header.rtMsg)!''}",
+          "exprType" : "fmr",
+      "level":"error"
+    },
+        "errCode" : "STATUS_FAILED_SYS_DS_EXCEPTION"
+      } ]
+    },{
+  "classType" : "com.wanda.credit.dsconfig.model.action.ConditionAction",
+  "desc" : null,
+  "conflicted" : false,
+  "exprs" : [ {
+    "classType" : "com.wanda.credit.dsconfig.model.expression.ConditionExpr",
+    "exprStr" : "${setmap(rspData,{'busiData':service.decrypt()})}",
+    "exprType" : "fmr","condition" : {
+          "classType" : "com.wanda.credit.dsconfig.model.expression.Expression",
+          "exprStr" : "${!exist(rspData.header.rtCode!'','E000000')}",
+          "exprType" : "fmr"
+        }
+  },{
+    "classType" : "com.wanda.credit.dsconfig.model.expression.ConditionExpr",
+    "exprStr" : "${setmap(rspData,{'busiData':service.decrypt()})}",
+    "exprType" : "fmr","condition" : {
+          "classType" : "com.wanda.credit.dsconfig.model.expression.Expression",
+          "exprStr" : "${!exist(rspData.header.rtCode!'','E000000')}",
+          "exprType" : "fmr"
+        }
+  } ]
+},{
+  "classType" : "com.wanda.credit.dsconfig.model.action.ExitAction",
+  "desc" : null,
+  "conflicted" : false,
+  "exprs" : [ {
+    "classType" : "com.wanda.credit.dsconfig.model.expression.ConditionExpr",
+    "condition" : {
+          "classType" : "com.wanda.credit.dsconfig.model.expression.Expression",
+          "exprStr" : "${!exist(rspData.header.rtCode!'','E000000')}",
+          "exprType" : "fmr"
+        }
+  },{
+    "classType" : "com.wanda.credit.dsconfig.model.expression.ConditionExpr",
+    "condition" : {
+          "classType" : "com.wanda.credit.dsconfig.model.expression.Expression",
+          "exprStr" : "${!exist(rspData.header.rtCode!'','E000000')}",
+          "exprType" : "fmr"
+        }
+  } ]
+},{
+ "classType" : "com.wanda.credit.dsconfig.model.action.ConditionAction",
+  "desc" : null,
+  "conflicted" : false,
+  "exprs" : [ {
+    "classType": "com.wanda.credit.dsconfig.model.expression.LoggingCondExpr",
+                            "exprStr": "数据源返回异常，详细信息:${(rspData.msg)!''}",
+                            "exprType": "fmr",
+                            "level": "info","condition" : {
+          "classType" : "com.wanda.credit.dsconfig.model.expression.Expression",
+          "exprStr" : "${!exist(rspData.header.rtCode!'','E000000')}",
+          "exprType" : "fmr"
+        }
+  },{
+  "classType": "com.wanda.credit.dsconfig.model.expression.LoggingCondExpr",
+                            "exprStr": "数据源返回异常，详细信息:${(rspData.msg)!''}",
+                            "exprType": "fmr",
+                            "level": "error",
+							"condition" : {
+          "classType" : "com.wanda.credit.dsconfig.model.expression.Expression",
+          "exprStr" : "${!exist(rspData.header.rtCode!'','E000000')}",
+          "exprType" : "fmr"
+        }
+  } ]
+}
+]},"sdkInfo": {
+        "services": [
+            {
+                "refName": "tokenservice",
+                "beanId": "wdWangShuTokenService"
+            }, {
+                "refName": "tokenservice",
+                "beanId": "wdWangShuTokenService"
+            }, {
+                "refName": "tokenservice",
+                "beanId": "wdWangShuTokenService"
+            }
+        ],
+        "resources": []
+    },"basicInfo":{"dsId":"ds_wdws_td_riskReport","dsName":"同盾信用报告","reqUrl":"http://10.213.128.91/gateway8000/data/preloan/wdkq_web","params":[{"name":"black_box"}]},"verifyModule":{"classType":"com.wanda.credit.dsconfig.model.module.VerifyModule","actions":[{"classType":"com.wanda.credit.dsconfig.model.action.ValidityAction","exprs":[{"classType":"com.wanda.credit.dsconfig.model.expression.ValidityCondExpr","exprStr":"传入参数不符合要求：邮件格式不正确","exprType":"constant","condition":null,"ruleName":{"classType":"com.wanda.credit.dsconfig.model.expression.Expression","exprStr":"regular(\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)","exprType":"constant"},"fields":"email","errCode":"STATUS_WARN_DS_POLICE_PARAM_FAILED"}]}]},"varDefineAction":{"classType":"com.wanda.credit.dsconfig.model.action.VarDefineAction","conflicted":false,"exprs":[{"classType":"com.wanda.credit.dsconfig.model.expression.VarDefineCondExpr","exprStr":"mDuzUgGI5tVGY_wCmEuFS1IP","exprType":"constant","name":"key","condition":null}]}}

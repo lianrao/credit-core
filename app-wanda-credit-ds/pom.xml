@@ -1,0 +1,651 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.wanda.credit.ds</groupId>
+	<artifactId>app-wanda-credit-ds</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>app-wanda-credit-ds Maven Webapp</name>
+	<repositories>
+		<repository>
+			<id>Sonatype</id>
+			<name>Sonatype Repository</name>
+			<url>http://repository.sonatype.org/content/groups/public/</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<credit-api.version>0.0.1-SNAPSHOT</credit-api.version>
+		<credit-base.version>0.0.1-SNAPSHOT</credit-base.version>
+		<credit-common.version>0.0.1-SNAPSHOT</credit-common.version>
+		<credit-dsconfig.version>0.0.1-SNAPSHOT</credit-dsconfig.version>
+		<credit-model.version>1.1</credit-model.version>
+
+		<spring.version>4.2.0.RELEASE</spring.version>
+		<jms.version>6.0</jms.version>
+		<xstream.version>1.3.1</xstream.version>
+		<freemarker.version>2.3.23</freemarker.version>
+		<bcprov.version>1.54</bcprov.version>
+		<xfire.version>1.2.6</xfire.version>
+		<viewer.version>1.0.1</viewer.version>
+		<codec.version>1.6</codec.version>
+		<json-lib.version>2.4</json-lib.version>
+		<servlet-api.version>3.1.0</servlet-api.version>
+		<fastjson.version>1.1.41</fastjson.version>
+		<commons-dbcp2>2.1</commons-dbcp2>
+
+		<hibernate-annotations.version>3.2.0.Final</hibernate-annotations.version>
+		<hibernate-core.version>3.6.0.Final</hibernate-core.version>
+
+		<log4j-api.version>2.7</log4j-api.version>
+		<log4j-core.version>2.7</log4j-core.version>
+
+		<jackson-core.version>2.7.3</jackson-core.version>
+		<jackson-databind.version>2.7.3</jackson-databind.version>
+		<jackson-annotations.version>2.7.3</jackson-annotations.version>
+		<jackson-mapper-asl.version>1.9.2</jackson-mapper-asl.version>
+
+		<httpclient.version>4.5.2</httpclient.version>
+		<httpcore.version>4.4.5</httpcore.version>
+
+		<aspectjweaver.version>1.8.5</aspectjweaver.version>
+		<servlet.version>3.1.0</servlet.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.version>0.0.1-SNAPSHOT</project.version>
+		<disruptor.version>3.3.4</disruptor.version>
+
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.codehaus.woodstox</groupId>
+					<artifactId>woodstox-core-asl</artifactId>
+				</exclusion>
+			</exclusions>
+			<version>3.1.6</version>
+		</dependency>
+		<!-- woodstox-core-asl -->
+		<dependency>
+			<groupId>org.codehaus.woodstox</groupId>
+			<artifactId>aawoodstox-core-asl</artifactId>
+			<version>4.4.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.woodstox</groupId>
+			<artifactId>stax2-api</artifactId>
+			<version>3.1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>3.1.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-discovery</groupId>
+			<artifactId>commons-discovery</artifactId>
+			<version>0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.chinadaa.api</groupId>
+			<artifactId>chinadaa-api</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.longcredit.common</groupId>
+			<artifactId>longcredit.common</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.wanda.credit.api</groupId>
+			<artifactId>wanda-credit-api</artifactId>
+			<version>${credit-api.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.wanda.credit.base</groupId>
+			<artifactId>wanda-credit-base</artifactId>
+			<version>${credit-base.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.wanda.credit.common</groupId>
+			<artifactId>wanda-credit-common</artifactId>
+			<version>${credit-common.version}</version>
+		</dependency>
+		<!-- wuchsh add -->
+		<dependency>
+			<groupId>com.wanda.credit.dsconfig</groupId>
+			<artifactId>wanda-credit-dsconfig</artifactId>
+			<version>${credit-dsconfig.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>*</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.12.0.GA</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.caucho</groupId>
+			<artifactId>hessian</artifactId>
+			<version>4.0.33</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>dubbo</artifactId>
+			<version>2.5.3</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring</artifactId>
+				</exclusion>
+				<exclusion>
+					<artifactId>netty</artifactId>
+					<groupId>org.jboss.netty</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+			<version>3.4.9</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.sgroschupf</groupId>
+			<artifactId>zkclient</artifactId>
+			<version>0.1</version>
+		</dependency>
+		<!-- jms -->
+		<dependency>
+			<groupId>javax.jms</groupId>
+			<artifactId>jms</artifactId>
+			<version>${jms.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>19.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>${xstream.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-commons-annotations</artifactId>
+			<version>${hibernate-annotations.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate-core.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>${freemarker.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk15on</artifactId>
+			<version>${bcprov.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.xfire</groupId>
+			<artifactId>xfire-all</artifactId>
+			<version>${xfire.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>*</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.crs.service</groupId>
+			<artifactId>viewer</artifactId>
+			<version>${viewer.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.model.api</groupId>
+			<artifactId>model-api</artifactId>
+			<version>${credit-model.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>${codec.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>${json-lib.version}</version>
+			<classifier>jdk15</classifier>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>${httpcore.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${httpclient.version}</version>
+		</dependency>
+
+		<!-- spring核心包 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-oxm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${servlet-api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jms</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<!-- aspectjweaver -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${aspectjweaver.version}</version>
+		</dependency>
+
+		<!-- format json object -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>${fastjson.version}</version>
+		</dependency>
+		<!-- dbcp2开始 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+			<version>2.1</version>
+		</dependency>
+		<!-- jackson -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson-core.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.unionpay</groupId>
+			<artifactId>udspsdk</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.com.bsfit.frms</groupId>
+			<artifactId>bsfit-api</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.com.bsfit.frms</groupId>
+			<artifactId>frms-base</artifactId>
+			<version>4.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson-databind.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson-annotations.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${jackson-mapper-asl.version}</version>
+		</dependency>
+
+		<!-- log配置：Log4j2 + Slf4j -->
+		<!-- <dependency> <groupId>org.apache.logging.log4j</groupId> <artifactId>log4j-api</artifactId> 
+			<version>2.2</version> </dependency> <dependency> <groupId>org.apache.logging.log4j</groupId> 
+			<artifactId>log4j-core</artifactId> <version>2.2</version> </dependency> -->
+		<!-- wuchsh add -->
+		<dependency>
+			<groupId>com.thinkive.base</groupId>
+			<artifactId>thinkive-base</artifactId>
+			<version>1.2.8</version>
+		</dependency>
+		<dependency>
+			<groupId>com.lvwan</groupId>
+			<artifactId>lvwan-sdk</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.axis</groupId>
+			<artifactId>axis</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>j2ee</groupId>
+			<artifactId>jaxrpc</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.chinadaas</groupId>
+			<artifactId>chinadaas-data-security-C</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.jiewei</groupId>
+			<artifactId>jieweiquery</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.lmax</groupId>
+			<artifactId>disruptor</artifactId>
+			<version>${disruptor.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy-all</artifactId>
+			<version>2.4.6</version>
+		</dependency>
+		<dependency>
+			<groupId>com.gboss</groupId>
+			<artifactId>gboss_client</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+			<version>4.5.2</version>
+		</dependency>
+		<!-- 安心签 begin -->
+		<dependency>
+			<groupId>com.anxinqian</groupId>
+			<artifactId>common-tsvo</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.anxinqian</groupId>
+			<artifactId>logback-cfca-jdk1.6</artifactId>
+			<version>3.2.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.anxinqian</groupId>
+			<artifactId>sadk</artifactId>
+			<version>3.3.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.anxinqian</groupId>
+			<artifactId>SealSADK</artifactId>
+			<version>3.1.3.0</version>
+		</dependency>
+		<!-- 安心签 end -->
+		<dependency>
+			<groupId>com.anxinqian</groupId>
+			<artifactId>etl-uaclient</artifactId>
+			<version>3.6.6.1</version>
+		</dependency>
+		<!-- 新中数 -->
+		<dependency>
+			<groupId>com.chinadaa.data.security.C</groupId>
+			<artifactId>chinadaa-data-security-C</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>it.sauronsoftware</groupId>
+			<artifactId>jave</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+		<!-- 公安一所 -->
+		<!-- <dependency>
+			<groupId>cn.com.jit.ida</groupId>
+			<artifactId>jit-pkitool</artifactId>
+			<version>2.3.0.25</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.com.jit</groupId>
+			<artifactId>jit-pkivstk</artifactId>
+			<version>1.0</version>
+		</dependency> -->
+		<dependency>
+			<groupId>bjca.org</groupId>
+			<artifactId>BJCA_LOG</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>bjca.org</groupId>
+			<artifactId>BJCACTID</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>bjca.org</groupId>
+			<artifactId>frictidApi</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>bjca.org</groupId>
+			<artifactId>SVSClient</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<!-- 百度ocr -->
+		<dependency>
+			<groupId>com.baidu.aip</groupId>
+			<artifactId>baidu-ocr</artifactId>
+			<version>4.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>2.1</version>
+		</dependency>
+		<!-- 中胜人脸比对 -->
+		<dependency>
+			<groupId>com.zhongsheng.api</groupId>
+			<artifactId>wndc-commons</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.12.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.belerweb</groupId>
+			<artifactId>pinyin4j</artifactId>
+			<version>2.5.0</version>
+		</dependency>
+    </dependencies>
+
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<name>Release Repository</name>
+			<url>
+				http://10.77.144.192:11081/nexus/content/repositories/releases
+			</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>Snapshot Repository</name>
+			<url>
+				http://10.77.144.192:11081/nexus/content/repositories/snapshots
+			</url>
+			<uniqueVersion>true</uniqueVersion>
+		</snapshotRepository>
+	</distributionManagement>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+				<version>3.1</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.4.2</version>
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.0.2</version>
+				<configuration>
+					<warSourceExcludes>**/Test*.class</warSourceExcludes>
+					<webappDirectory>src/main/webapp</webappDirectory>
+					<workDirectory>${project.build.directory}/work</workDirectory>
+					<archive>
+						<addMavenDescriptor>true</addMavenDescriptor>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.1</version>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>tomcat-maven-plugin</artifactId>
+				<version>1.1</version>
+				<configuration>
+					<path>/app-wanda-credit-score</path>
+					<port>8080</port>
+					<uriEncoding>UTF-8</uriEncoding>
+					<url>http://localhost:8080/manager/html</url>
+					<server>tomcat7</server>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

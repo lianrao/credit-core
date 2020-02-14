@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>    
+<configuration status="error">    
+  <appenders>    
+    <Console name="Console" >    
+      <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY"/>    
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36}  %M - %msg%xEx%n"/>    
+    </Console>    
+    <File name="log" fileName="target/test.log" append="false">    
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36}  %M - %msg%xEx%n"/>    
+    </File>    
+    <RollingFile name="RollingFile" fileName="/opt/idc/logs/app-wanda-credit-ds/app-wanda-credit-ds.log"
+                 filePattern="/opt/idc/logs/app-wanda-credit-ds/$${date:yyyy-MM}/app-wanda-credit-ds-%d{MM-dd-yyyy}-%i.log.gz">
+        <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%t] (%c) - %m%n</Pattern>
+            </PatternLayout> 
+	    <Policies>  
+	        <TimeBasedTriggeringPolicy modulate="true" interval="1"/>  
+	    </Policies>   
+    </RollingFile>    
+  </appenders>    
+  <loggers>    
+   <!-- 
+     <AsyncLogger name="com.wanda" level="info" additivity="false" includeLocation="false">
+            <AppenderRef ref="RollingFile"/>        
+     </AsyncLogger>
+     <AsyncLogger name="com.wanda.credit.dsconfig" level="info" additivity="false" includeLocation="false">
+            <AppenderRef ref="RollingFile"/>        
+     </AsyncLogger>
+     <AsyncLogger name="com.wanda.credit.ds.client.dsconfig" level="info" additivity="false" includeLocation="false">
+            <AppenderRef ref="RollingFile"/>        
+     </AsyncLogger>
+     <AsyncLogger name="com.wanda.credit.executor.action" level="error" additivity="false" includeLocation="false">
+            <AppenderRef ref="RollingFile"/>        
+     </AsyncLogger>
+      -->
+    <root level="info">    
+      <appender-ref ref="RollingFile"/>
+       <!-- <appender-ref ref="Console"/>  -->
+    </root>    
+  </loggers>    
+</configuration>  

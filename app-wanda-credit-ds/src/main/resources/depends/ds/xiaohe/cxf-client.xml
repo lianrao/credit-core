@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://cxf.apache.org/jaxws http://cxf.apache.org/schema/jaxws.xsd">
+
+
+    <bean id="psaSoap" class="com.wanda.credit.ds.dao.domain.xiaohe.sync.PSASoap" 
+          factory-bean="psaSoapFactory" factory-method="create"/>
+    
+    <bean id="psaSoapFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+        <property name="serviceClass" value="com.wanda.credit.ds.dao.domain.xiaohe.sync.PSASoap"/>
+        <property name="address" value="https://api.xiaoheer.com//ws/report/psa.asmx"/>
+    </bean>
+</beans>
